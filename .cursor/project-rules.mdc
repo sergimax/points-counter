@@ -1,0 +1,109 @@
+---
+description: Rules for AI agents working on points-counter (TypeScript / React / Vite when present)
+alwaysApply: true
+---
+
+# Project rules for AI agents — points counter
+
+## Code style
+
+- **TypeScript:** stay strict; avoid `any` unless there is a clear, narrow reason.
+- **React:** functional components and hooks; keep state and effects easy to follow.
+- Names and functions: descriptive, small, single-purpose.
+
+## Naming
+
+- Prefer **kebab-case** for file and directory paths (e.g. `use-raid-tracker.ts`, `dungeon-table.tsx`).
+- Exported symbols stay idiomatic (e.g. `useRaidTracker`); **paths** stay kebab-case.
+- Avoid cryptic locals (`v`, `d`, `c`, `e`); prefer names like `event`, `nextValue`, `character`, `dungeon`.
+
+## Stack and tooling
+
+- **Target stack** (when the app is scaffolded): **React 19**, **TypeScript**, **Vite** (e.g. `@vitejs/plugin-react`), ESLint flat config where used.
+- After substantive changes, run **`npm run lint`** and **`npm run build`** when those scripts exist; fix anything introduced by the edit.
+- Do not add dependencies without a short justification; keep the repo lean unless product needs require otherwise.
+
+## Product context — my-raid-manager
+
+- Raid-focused management app: expect **characters**, **raids/dungeons** (or similar entities), and **per-character** tracking (toggles, assignments, cooldowns, etc.) as features grow.
+- **Persistence:** prefer **browser `localStorage`** (or the pattern already in `storage`-style modules) unless the codebase moves to a backend; keep keys and shapes documented in README when stable.
+- Prefer **simple, accessible UI** (keyboard, labels, readable contrast).
+- Extend this section with concrete rules (storage keys, picker logic, etc.) as behavior is implemented.
+
+## Editing habits
+
+- Prefer changing existing files over adding new ones when it keeps the design clear.
+- Match indentation and formatting already in the file.
+- Run the linter after changes; fix any new issues you introduce.
+
+## Component and module layout
+
+- **kebab-case** for component directories (e.g. `character-form/`).
+- Per-component layout (when used): `index.tsx`, optional `types.ts`, optional `styles.css` co-located.
+- Domain state in hooks (e.g. `hooks/use-raid-tracker.ts`); components receive data and mutation handlers via props. Ephemeral UI state (sort, search query) may live in leaf components.
+
+## Project structure (evolve as the repo grows)
+
+<!-- - Typical layout to aim for:
+
+```
+src/
+├── components/   # feature UI (kebab-case folders)
+├── hooks/        # domain hooks (kebab-case files)
+├── types/        # shared domain types
+├── data/         # static templates / seed data (if any)
+├── assets/       # images, icons
+└── main entry + app shell (e.g. main.tsx, App.tsx)
+``` -->
+
+- **Changelog:** [Keep a Changelog](https://keepachangelog.com/) at repo root (`CHANGELOG.md`); update for user-visible fixes and behavior changes.
+- **README** should stay aligned with real behavior (persistence keys, main flows, scripts, version if shown).
+- **Multiple README locales:** if more than one root readme exists (e.g. `README.md` + `README-RU.md`), treat them as one documentation set. When substantive facts change, **update every locale**; wording may differ, technical details must not drift. Cross-link at the top of each file.
+- **Vite `define` / build-time version strings:** only add when the UI or logic needs them (e.g. `__APP_VERSION__` with a matching `vite-env.d.ts` entry).
+
+## Commit messages
+
+Use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/):
+
+`type[optional scope]: description`
+
+- **feat:** new feature (MINOR)
+- **fix:** bug fix (PATCH)
+- **docs:** documentation only
+- **style:** formatting, no code change
+- **refactor:** code change that neither fixes nor adds a feature
+- **perf:** performance improvement
+- **test:** adding or updating tests
+- **chore:** build, CI, tooling
+- **BREAKING CHANGE:** use `!` after type/scope or footer (MAJOR)
+
+Example: `feat(dungeons): add row delete control`
+
+## Versioning and changelog
+
+### Versioning & Changelog
+
+- Use [Semantic Versioning](https://semver.org/): MAJOR.MINOR.PATCH
+- Version lives in `apps/frontend/package.json`; shown in the UI footer via Vite `define`
+- When releasing: bump version, then add a `CHANGELOG.md` entry
+- Changelog entries must describe **actual user-facing changes** included in the release (derived from commits/diff since the previous release), not just “bump version”
+
+### Changelog format
+
+- Follow [Keep a Changelog](https://keepachangelog.com/)
+- File: `CHANGELOG.md` at project root
+- Sections: `### Added`, `### Changed`, `### Deprecated`, `### Removed`, `### Fixed`, `### Security`
+- Entry format: `## [X.Y.Z] - YYYY-MM-DD`
+- Add new entries at the top (above previous releases)
+- Because this repo is a monorepo, group each release’s notes by area using headings (omit empty ones):
+  - `### Frontend` (for `apps/frontend`)
+  - `### Backend` (for `apps/backend`)
+  - `### Shared` (for `packages/shared`)
+  - Inside each area heading, use the standard Keep a Changelog sections (`#### Added`, `#### Changed`, etc.)
+- Do **not** add filler entries like “version bump for release”; if a release contains no notable changes, do not cut a release (or explicitly document why)
+
+## Communication
+
+- Be direct and concise.
+- If requirements are ambiguous, ask before large refactors.
+- Briefly note non-obvious choices in responses or commits.
