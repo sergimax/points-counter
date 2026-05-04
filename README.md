@@ -1,73 +1,29 @@
-# React + TypeScript + Vite
+# points-counter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A **local-first** web app for **counting and processing points** in board games. Everything runs in the browser: **no backend**, no cloud sync, and no special hosted data.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/) + [Vite](https://vite.dev/)
 
-## React Compiler
+## Data and state
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Persistence:** browser storage only (for example **`localStorage`**) and/or in-memory state coordinated with **[MobX](https://mobx.js.org/)** (or similar patterns the repo adopts). Document stable storage keys and JSON shapes here when they are settled.
+- **Privacy:** game data stays on the device unless the user exports or copies it themselves.
 
-## Expanding the ESLint configuration
+## Roadmap (planned)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **PWA:** add a [Web App Manifest](https://developer.mozilla.org/en-US/docs/Web/Manifest) (and related PWA pieces) so the app can be installed and used more like a **mobile app** from the home screen.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Scripts
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+| Command           | Description              |
+| ----------------- | ------------------------ |
+| `npm run dev`     | Start dev server with HMR |
+| `npm run build`   | Typecheck and production build |
+| `npm run preview` | Preview the production build |
+| `npm run lint`    | Run ESLint               |
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Version
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Current version is in [`package.json`](./package.json) (see `"version"`). User-facing changes are summarized in [`CHANGELOG.md`](./CHANGELOG.md).
