@@ -1,9 +1,9 @@
 ---
-description: Rules for AI agents working on points-counter (TypeScript / React / Vite when present)
+description: Rules for AI agents working on points-counter (board game points, React, TypeScript, Vite)
 alwaysApply: true
 ---
 
-# Project rules for AI agents — points counter
+# Project rules for AI agents — points-counter
 
 ## Code style
 
@@ -13,22 +13,24 @@ alwaysApply: true
 
 ## Naming
 
-- Prefer **kebab-case** for file and directory paths (e.g. `use-raid-tracker.ts`, `dungeon-table.tsx`).
-- Exported symbols stay idiomatic (e.g. `useRaidTracker`); **paths** stay kebab-case.
-- Avoid cryptic locals (`v`, `d`, `c`, `e`); prefer names like `event`, `nextValue`, `character`, `dungeon`.
+- Prefer **kebab-case** for file and directory paths (e.g. `use-round-scores.ts`, `player-row.tsx`).
+- Exported symbols stay idiomatic (e.g. `useRoundScores`); **paths** stay kebab-case.
+- Avoid cryptic locals (`v`, `d`, `c`, `e`); prefer names like `event`, `nextValue`, `player`, `round`.
 
 ## Stack and tooling
 
-- **Target stack** (when the app is scaffolded): **React 19**, **TypeScript**, **Vite** (e.g. `@vitejs/plugin-react`), ESLint flat config where used.
+- **Stack:** **React 19**, **TypeScript**, **Vite** (e.g. `@vitejs/plugin-react`), ESLint flat config where used.
+- **State / persistence:** **MobX** and/or **`localStorage`** for local-first data; no backend unless the product direction explicitly changes.
 - After substantive changes, run **`npm run lint`** and **`npm run build`** when those scripts exist; fix anything introduced by the edit.
 - Do not add dependencies without a short justification; keep the repo lean unless product needs require otherwise.
 
-## Product context — my-raid-manager
+## Product context — points-counter
 
-- Raid-focused management app: expect **characters**, **raids/dungeons** (or similar entities), and **per-character** tracking (toggles, assignments, cooldowns, etc.) as features grow.
-- **Persistence:** prefer **browser `localStorage`** (or the pattern already in `storage`-style modules) unless the codebase moves to a backend; keep keys and shapes documented in README when stable.
+- **Purpose:** count and process **points** for **board games** (sessions, players, rounds, tie-breaks, history—whatever the app implements over time).
+- **Local first:** no server, no special hosted datasets; all meaningful data lives in the **browser** (MobX stores persisted to **`localStorage`**, or equivalent patterns already in the repo).
+- **Future — PWA:** a **Web App Manifest** (and typical PWA support such as icons and installability) is a planned enhancement for **mobile-style** use (install from browser, home screen). Do not half-enable PWA without icons, manifest fields, and a quick sanity check on install behavior.
 - Prefer **simple, accessible UI** (keyboard, labels, readable contrast).
-- Extend this section with concrete rules (storage keys, picker logic, etc.) as behavior is implemented.
+- Extend this section with concrete rules (storage keys, score rules, export format) as behavior is implemented.
 
 ## Editing habits
 
@@ -38,23 +40,24 @@ alwaysApply: true
 
 ## Component and module layout
 
-- **kebab-case** for component directories (e.g. `character-form/`).
+- **kebab-case** for component directories (e.g. `score-table/`).
 - Per-component layout (when used): `index.tsx`, optional `types.ts`, optional `styles.css` co-located.
-- Domain state in hooks (e.g. `hooks/use-raid-tracker.ts`); components receive data and mutation handlers via props. Ephemeral UI state (sort, search query) may live in leaf components.
+- Domain state in hooks or MobX stores (e.g. `hooks/use-session.ts`, `stores/game-store.ts`); components receive data and mutation handlers via props or observers. Ephemeral UI state (sort, search query) may live in leaf components.
 
 ## Project structure (evolve as the repo grows)
 
-<!-- - Typical layout to aim for:
+- Typical layout to aim for:
 
 ```
 src/
 ├── components/   # feature UI (kebab-case folders)
-├── hooks/        # domain hooks (kebab-case files)
+├── hooks/        # domain hooks (kebab-case files), if used
+├── stores/       # MobX stores when used
 ├── types/        # shared domain types
-├── data/         # static templates / seed data (if any)
+├── lib/          # storage helpers, pure utilities
 ├── assets/       # images, icons
 └── main entry + app shell (e.g. main.tsx, App.tsx)
-``` -->
+```
 
 - **Changelog:** [Keep a Changelog](https://keepachangelog.com/) at repo root (`CHANGELOG.md`); update for user-visible fixes and behavior changes.
 - **README** should stay aligned with real behavior (persistence keys, main flows, scripts, version if shown).
@@ -77,14 +80,14 @@ Use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/):
 - **chore:** build, CI, tooling
 - **BREAKING CHANGE:** use `!` after type/scope or footer (MAJOR)
 
-Example: `feat(dungeons): add row delete control`
+Example: `feat(scoring): add per-round subtotal column`
 
 ## Versioning and changelog
 
 ### Versioning & Changelog
 
 - Use [Semantic Versioning](https://semver.org/): MAJOR.MINOR.PATCH
-- Version lives in `apps/frontend/package.json`; shown in the UI footer via Vite `define`
+- Version lives in root **`package.json`**
 - When releasing: bump version, then add a `CHANGELOG.md` entry
 - Changelog entries must describe **actual user-facing changes** included in the release (derived from commits/diff since the previous release), not just “bump version”
 
@@ -95,11 +98,6 @@ Example: `feat(dungeons): add row delete control`
 - Sections: `### Added`, `### Changed`, `### Deprecated`, `### Removed`, `### Fixed`, `### Security`
 - Entry format: `## [X.Y.Z] - YYYY-MM-DD`
 - Add new entries at the top (above previous releases)
-- Because this repo is a monorepo, group each release’s notes by area using headings (omit empty ones):
-  - `### Frontend` (for `apps/frontend`)
-  - `### Backend` (for `apps/backend`)
-  - `### Shared` (for `packages/shared`)
-  - Inside each area heading, use the standard Keep a Changelog sections (`#### Added`, `#### Changed`, etc.)
 - Do **not** add filler entries like “version bump for release”; if a release contains no notable changes, do not cut a release (or explicitly document why)
 
 ## Communication
