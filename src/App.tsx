@@ -1,11 +1,12 @@
 import './App.css'
 import { AppFooter } from './components/app-footer'
+import { AppHeader } from './components/app-header'
 
 function App() {
 
   return (
     <>
-      <header>POINTS</header>
+      <AppHeader />
       Hello there!
       <AppFooter />
     </>
