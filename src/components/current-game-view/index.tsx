@@ -1,5 +1,4 @@
 import AddIcon from "@mui/icons-material/Add";
-import PauseIcon from "@mui/icons-material/Pause";
 import RemoveIcon from "@mui/icons-material/Remove";
 import {
   Box,
@@ -398,14 +397,6 @@ export const CurrentGameView = observer(function CurrentGameView() {
             onClick={() => rootStore.closeActiveRound()}
           >
             {t("toolbar.closeRound")}
-          </Button>
-          <Button
-            size="small"
-            variant="outlined"
-            startIcon={<PauseIcon />}
-            onClick={() => rootStore.pauseActiveGame()}
-          >
-            {t("toolbar.pauseGame")}
           </Button>
         </Stack>
       </Stack>

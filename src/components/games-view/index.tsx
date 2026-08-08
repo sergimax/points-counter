@@ -1,5 +1,4 @@
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
-import PauseIcon from "@mui/icons-material/Pause";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import {
   Box,
@@ -105,15 +104,7 @@ const GameListItem = observer(function GameListItem({
         </Stack>
 
         <Stack direction="row" spacing={0.75} sx={{ flexShrink: 0 }}>
-          {isActive ? (
-            <Button
-              size="small"
-              startIcon={<PauseIcon />}
-              onClick={() => rootStore.pauseActiveGame()}
-            >
-              {t("game.pause")}
-            </Button>
-          ) : (
+          {isActive ? null : (
             <Button
               size="small"
               variant="contained"

@@ -14,7 +14,6 @@ export type MessageKey =
   | "toolbar.currentGame"
   | "toolbar.games"
   | "toolbar.closeRound"
-  | "toolbar.pauseGame"
   | "toolbar.menu"
   | "empty.noActiveGame"
   | "empty.noActiveGameHint"
@@ -27,7 +26,6 @@ export type MessageKey =
   | "game.historyTitle"
   | "game.historyEmpty"
   | "game.players"
-  | "game.pause"
   | "game.activate"
   | "game.delete"
   | "game.deleteConfirm"
@@ -70,7 +68,6 @@ const en: Messages = {
   "toolbar.currentGame": "Current game",
   "toolbar.games": "Games",
   "toolbar.closeRound": "Close round",
-  "toolbar.pauseGame": "Pause game",
   "toolbar.menu": "Menu",
   "empty.noActiveGame": "No active game",
   "empty.noActiveGameHint": "Create a new game or resume a saved one from Games.",
@@ -83,7 +80,6 @@ const en: Messages = {
   "game.historyTitle": "Round history",
   "game.historyEmpty": "No closed rounds yet.",
   "game.players": "Players",
-  "game.pause": "Pause",
   "game.activate": "Resume",
   "game.delete": "Delete",
   "game.deleteConfirm": "Delete “{title}”? This cannot be undone.",
@@ -125,7 +121,6 @@ const ru: Messages = {
   "toolbar.currentGame": "Текущая игра",
   "toolbar.games": "Игры",
   "toolbar.closeRound": "Закрыть раунд",
-  "toolbar.pauseGame": "Пауза",
   "toolbar.menu": "Меню",
   "empty.noActiveGame": "Нет активной игры",
   "empty.noActiveGameHint":
@@ -139,7 +134,6 @@ const ru: Messages = {
   "game.historyTitle": "История раундов",
   "game.historyEmpty": "Закрытых раундов пока нет.",
   "game.players": "Игроки",
-  "game.pause": "Пауза",
   "game.activate": "Продолжить",
   "game.delete": "Удалить",
   "game.deleteConfirm": "Удалить «{title}»? Это нельзя отменить.",

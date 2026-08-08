@@ -46,7 +46,6 @@ export class RootStore {
       hydrate: action,
       createGame: action,
       deleteGame: action,
-      pauseActiveGame: action,
       activateGame: action,
       closeActiveRound: action,
     });
@@ -137,16 +136,6 @@ export class RootStore {
     if (this.activeGameId === gameId) {
       this.activeGameId = null;
     }
-  }
-
-  /** Pause the active game so another can be resumed later. */
-  pauseActiveGame(): void {
-    const active = this.activeGame;
-    if (!active) {
-      return;
-    }
-    active.setPaused();
-    this.activeGameId = null;
   }
 
   /**
