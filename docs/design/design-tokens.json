@@ -1,0 +1,306 @@
+{
+  "$schemaComment": "Portable design tokens for points-counter — chrome + shared UI recipes.",
+  "meta": {
+    "name": "points-counter",
+    "version": "0.0.1",
+    "versionNote": "Tracks app package.json when design tokens change with a release; not an independent semver stream.",
+    "sources": [
+      "src/theme/create-app-theme.ts",
+      "src/theme/links.css",
+      "src/theme/tooltip-surface.ts",
+      "src/index.css",
+      "src/App.css",
+      "src/components/app-header/index.tsx"
+    ],
+    "muiSpacingPx": 8,
+    "bilingualFonts": {
+      "rule": "RU+EN — Cyrillic + Latin required",
+      "body": "Noto Sans",
+      "display": "Onest",
+      "mono": ["JetBrains Mono", "IBM Plex Mono"]
+    }
+  },
+  "semantics": {
+    "brandNotPrimary": true,
+    "primaryIsInverseInk": true,
+    "okIsGreen": true,
+    "dangerIsRed": true,
+    "brandDistinctFromDangerAndOk": true,
+    "interactiveBorder": "#8a8a8a"
+  },
+  "typography": {
+    "fontFamily": {
+      "body": "'Noto Sans', system-ui, sans-serif",
+      "display": "'Onest', 'Noto Sans', system-ui, sans-serif",
+      "mono": "'JetBrains Mono', 'IBM Plex Mono', monospace"
+    },
+    "brandNameWeight": 700,
+    "proseLineHeight": 1.55,
+    "button": {
+      "textTransform": "none",
+      "fontWeight": 600,
+      "letterSpacing": 0
+    },
+    "h6": { "fontFamily": "display", "fontWeight": 700, "letterSpacing": "-0.02em" },
+    "subtitle1": { "fontFamily": "display", "fontWeight": 600, "letterSpacing": "-0.01em" }
+  },
+  "shape": {
+    "borderRadius": 10,
+    "controlBorderRadius": 8,
+    "dialogBorderRadius": 12,
+    "filterCardBorderRadius": 8,
+    "scrollbarThumbBorderRadius": 999,
+    "gap": "0.55rem",
+    "pad": "0.65rem"
+  },
+  "borders": {
+    "width": "1px",
+    "style": "solid",
+    "defaultColorToken": "divider",
+    "interactive": "#8a8a8a"
+  },
+  "spacingRecipes": {
+    "panelPadding": { "xs": 12, "sm": 16 },
+    "filterSectionPadding": 10,
+    "stackPanel": 12,
+    "formFieldGap": 10
+  },
+  "shadows": {
+    "card": {
+      "light": "0 6px 18px rgba(0, 0, 0, 0.07)",
+      "dark": "0 8px 24px rgba(0, 0, 0, 0.4)"
+    },
+    "menu": {
+      "light": "0 8px 24px rgba(0, 0, 0, 0.12)",
+      "dark": "0 8px 24px rgba(0, 0, 0, 0.45)"
+    }
+  },
+  "scrollbar": {
+    "sizePx": 8,
+    "track": "transparent",
+    "thumb": { "light": "#c4c4c0", "dark": "#555555" },
+    "thumbHover": { "light": "#8a8a8a", "dark": "#8a8a8a" }
+  },
+  "shell": {
+    "toolbarMinHeightPx": { "xs": 56, "sm": 64 },
+    "mainPadding": {
+      "top": { "xs": "1.5rem", "sm": "2rem" },
+      "x": { "xs": "1.25rem", "sm": "1.75rem" },
+      "bottom": "2rem"
+    },
+    "header": {
+      "logoSizePx": 28,
+      "rightChrome": ["locale", "theme", "github", "authorHome", "versionLabel"],
+      "centerSlot": "optional primary actions (empty until feature work)"
+    }
+  },
+  "colorMode": {
+    "htmlAttribute": "data-color-mode",
+    "storageKey": "points-counter-color-mode",
+    "themeColorMeta": {
+      "light": "#fcfbf9",
+      "dark": "#1a1a1a"
+    }
+  },
+  "locale": {
+    "storageKey": "points-counter-locale",
+    "default": "en",
+    "values": ["en", "ru"],
+    "scope": "chrome strings (header / meta) until full i18n"
+  },
+  "cssVariables": {
+    "light": {
+      "--bg": "#fcfbf9",
+      "--page-bg": "#fcfbf9",
+      "--surface": "#ffffff",
+      "--chip-bg": "#f3f2ef",
+      "--header-bg": "rgba(252, 251, 249, 0.96)",
+      "--border": "#8a8a8a",
+      "--text": "#141414",
+      "--text-strong": "#0a0a0a",
+      "--text-muted": "#555555",
+      "--brand": "#9a3412",
+      "--brand-soft": "#fff7ed",
+      "--brand-border": "#c2410c",
+      "--ok": "#166534",
+      "--ok-bg": "#ecfdf5",
+      "--ok-border": "#166534",
+      "--danger": "#dc2626",
+      "--danger-bg": "#fef2f2",
+      "--danger-border": "#dc2626",
+      "--link": "#2c5282",
+      "--link-spot": "#9a3412",
+      "--primary-bg": "#0a0a0a",
+      "--primary-fg": "#ffffff",
+      "--shadow": "0 6px 18px rgba(0, 0, 0, 0.07)",
+      "--scrollbar-size": "8px",
+      "--scrollbar-track": "transparent",
+      "--scrollbar-thumb": "#c4c4c0",
+      "--scrollbar-thumb-hover": "#8a8a8a"
+    },
+    "dark": {
+      "--bg": "#1a1a1a",
+      "--page-bg": "#1a1a1a",
+      "--surface": "#242424",
+      "--chip-bg": "#1f1f1f",
+      "--header-bg": "rgba(26, 26, 26, 0.96)",
+      "--border": "#8a8a8a",
+      "--text": "#f2f2f2",
+      "--text-strong": "#fafafa",
+      "--text-muted": "#a3a3a3",
+      "--brand": "#fb923c",
+      "--brand-soft": "#3d2818",
+      "--brand-border": "#fb923c",
+      "--ok": "#86efac",
+      "--ok-bg": "rgba(134, 239, 172, 0.12)",
+      "--ok-border": "#86efac",
+      "--danger": "#ff7b72",
+      "--danger-bg": "rgba(255, 123, 114, 0.14)",
+      "--danger-border": "#ff7b72",
+      "--link": "#8ab4c8",
+      "--link-spot": "#fb923c",
+      "--primary-bg": "#fafafa",
+      "--primary-fg": "#111111",
+      "--shadow": "0 8px 24px rgba(0, 0, 0, 0.4)",
+      "--scrollbar-thumb": "#555555",
+      "--scrollbar-thumb-hover": "#8a8a8a"
+    }
+  },
+  "palette": {
+    "light": {
+      "primary": { "main": "#0a0a0a", "light": "#333333", "dark": "#000000", "contrastText": "#ffffff" },
+      "secondary": { "main": "#9a3412", "light": "#c2410c", "dark": "#7c2d12", "contrastText": "#ffffff" },
+      "success": { "main": "#166534", "contrastText": "#ffffff" },
+      "error": { "main": "#dc2626", "light": "#f87171", "dark": "#b91c1c", "contrastText": "#ffffff" },
+      "info": { "main": "#0284c7", "light": "#38bdf8", "dark": "#0369a1" },
+      "warning": { "main": "#d97706", "light": "#fbbf24", "dark": "#b45309" },
+      "background": { "default": "#fcfbf9", "paper": "#ffffff" },
+      "divider": "#8a8a8a",
+      "text": { "primary": "#141414", "secondary": "#555555" },
+      "action": {
+        "hover": "rgba(20, 20, 20, 0.04)",
+        "selected": "rgba(154, 52, 18, 0.1)"
+      },
+      "inputHoverBorder": "#6b6b6b"
+    },
+    "dark": {
+      "primary": { "main": "#fafafa", "light": "#ffffff", "dark": "#e5e5e5", "contrastText": "#111111" },
+      "secondary": { "main": "#fb923c", "light": "#fdba74", "dark": "#ea580c", "contrastText": "#111111" },
+      "success": { "main": "#86efac", "contrastText": "#111111" },
+      "error": { "main": "#ff7b72", "light": "#fecaca", "dark": "#f87171", "contrastText": "#111111" },
+      "info": { "main": "#38bdf8", "light": "#7dd3fc", "dark": "#0284c7" },
+      "warning": { "main": "#f59e0b", "light": "#fbbf24", "dark": "#d97706" },
+      "background": { "default": "#1a1a1a", "paper": "#242424" },
+      "divider": "#8a8a8a",
+      "text": { "primary": "#f2f2f2", "secondary": "#a3a3a3" },
+      "action": {
+        "hover": "rgba(242, 242, 242, 0.06)",
+        "selected": "rgba(251, 146, 60, 0.18)"
+      },
+      "inputHoverBorder": "#a3a3a3"
+    }
+  },
+  "linkStyles": {
+    "quiet": {
+      "colorToken": "link",
+      "fontWeight": 500,
+      "textDecorationThickness": "1px",
+      "textUnderlineOffset": "3px"
+    },
+    "spot": {
+      "className": "link-spot",
+      "colorToken": "linkSpot",
+      "fontFamilyToken": "display",
+      "fontWeight": 700,
+      "fontStyle": "italic",
+      "textDecorationThickness": "2px",
+      "textUnderlineOffset": "3px",
+      "letterSpacing": "0.01em"
+    }
+  },
+  "atmosphere": {
+    "light": "radial-gradient(1200px 600px at 10% -10%, rgba(154, 52, 18, 0.06), transparent 55%), radial-gradient(900px 500px at 100% 0%, rgba(194, 65, 12, 0.04), transparent 50%)",
+    "dark": "radial-gradient(1000px 520px at 8% -12%, rgba(251, 146, 60, 0.1), transparent 55%), radial-gradient(800px 480px at 100% 0%, rgba(61, 40, 24, 0.45), transparent 50%)",
+    "backgroundAttachment": "fixed"
+  },
+  "components": {
+    "outlinedPaper": {
+      "borderColor": "divider",
+      "shadowToken": "card"
+    },
+    "button": {
+      "disableElevation": true,
+      "borderRadius": 8,
+      "primaryIsInverseInk": true,
+      "outlinedFillAlpha": { "light": 0.7, "dark": 0.4 },
+      "outlinedHoverFillAlpha": { "light": 0.08, "dark": 0.14 },
+      "containedInheritActive": {
+        "note": "Toolbar selected panel — brand soft fill, not ink alpha",
+        "backgroundAlpha": { "light": 0.14, "dark": 0.24 },
+        "borderAlpha": { "light": 0.4, "dark": 0.5 },
+        "hoverBackgroundAlpha": { "light": 0.22, "dark": 0.34 }
+      }
+    },
+    "iconButton": {
+      "source": "src/theme/create-app-theme.ts MuiIconButton",
+      "borderRadius": 8,
+      "hoverBackground": "action.hover",
+      "colorError": {
+        "light": {
+          "rest": "error.light (#f87171)",
+          "hover": "error.main (--danger #dc2626)"
+        },
+        "dark": {
+          "rest": "error.main (#ff7b72)",
+          "note": "Already soft coral; no separate light rest"
+        }
+      }
+    },
+    "switch": {
+      "source": "src/theme/create-app-theme.ts MuiSwitch",
+      "off": {
+        "thumb": { "light": "#b0afa9", "dark": "#5c5c5c" },
+        "track": { "light": "chipBg", "dark": "#2e2e2e" }
+      },
+      "on": {
+        "light": {
+          "thumb": "#86efac",
+          "thumbRing": "0 0 0 1px #166534",
+          "track": "ok (#166534)"
+        },
+        "dark": {
+          "thumb": "#6ee7a0",
+          "thumbShadow": "0 1px 2px rgba(0,0,0,0.35)",
+          "track": "rgba(134, 239, 172, 0.55)",
+          "note": "No hard glow ring"
+        }
+      }
+    },
+    "outlinedInput": {
+      "fillAlpha": { "light": 0.8, "dark": 0.35 }
+    },
+    "dialog": {
+      "borderRadius": 12,
+      "border": "1px solid divider"
+    },
+    "tableContainer": {
+      "borderRadiusToken": "shape.borderRadius",
+      "border": "1px solid divider",
+      "shadowToken": "card"
+    },
+    "tooltipSurface": {
+      "light": {
+        "bgcolor": "#27272a",
+        "color": "#fafafa",
+        "mutedColor": "#d4d4d8",
+        "borderColor": "#3f3f46"
+      },
+      "dark": {
+        "bgcolor": "#3f3f46",
+        "color": "#fafafa",
+        "mutedColor": "#d4d4d8",
+        "borderColor": "#52525b"
+      }
+    }
+  }
+}
