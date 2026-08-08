@@ -1,3 +1,4 @@
+import AddIcon from "@mui/icons-material/Add";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import {
@@ -19,6 +20,7 @@ import { GameIcon } from "../entity-icons/index.tsx";
 
 type GamesViewProps = {
   onActivated: () => void;
+  onNewGame: () => void;
 };
 
 const GameListItem = observer(function GameListItem({
@@ -141,23 +143,54 @@ const GameListItem = observer(function GameListItem({
 
 export const GamesView = observer(function GamesView({
   onActivated,
+  onNewGame,
 }: GamesViewProps) {
   const { t } = useTranslation();
   const rootStore = useRootStore();
 
   return (
     <Stack spacing={1.5} sx={{ maxWidth: 720 }}>
-      <Typography
-        component="h2"
-        variant="h6"
-        sx={{ fontFamily: "var(--font-display)" }}
+      <Stack
+        direction="row"
+        spacing={1.25}
+        sx={{
+          alignItems: "center",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          gap: 1,
+        }}
       >
-        {t("panel.gamesTitle")}
-      </Typography>
+        <Typography
+          component="h2"
+          variant="h6"
+          sx={{ fontFamily: "var(--font-display)" }}
+        >
+          {t("panel.gamesTitle")}
+        </Typography>
+        <Button
+          size="small"
+          variant="contained"
+          color="secondary"
+          startIcon={<AddIcon />}
+          onClick={onNewGame}
+        >
+          {t("toolbar.newGame")}
+        </Button>
+      </Stack>
 
       {rootStore.sortedGames.length === 0 ? (
         <Paper variant="outlined" sx={{ p: { xs: 2, sm: 3 } }}>
-          <Typography color="text.secondary">{t("empty.noGames")}</Typography>
+          <Typography color="text.secondary" sx={{ mb: 1.5 }}>
+            {t("empty.noGames")}
+          </Typography>
+          <Button
+            variant="contained"
+            color="secondary"
+            startIcon={<AddIcon />}
+            onClick={onNewGame}
+          >
+            {t("toolbar.newGame")}
+          </Button>
         </Paper>
       ) : (
         <Stack spacing={1.25}>
