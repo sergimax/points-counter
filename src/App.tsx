@@ -1,14 +1,35 @@
-import { useState } from "react";
+import { observer } from "mobx-react-lite";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { AppHeader } from "./components/app-header";
 import { AppToolbarActions } from "./components/app-toolbar-actions";
 import { CurrentGameView } from "./components/current-game-view";
 import { GamesView } from "./components/games-view";
 import { NewGameView } from "./components/new-game-view";
+import { useRootStore } from "./stores/use-root-store.ts";
 import type { AppViewId } from "./types/app-view.ts";
 
-function App() {
-  const [activeView, setActiveView] = useState<AppViewId>("current");
+const App = observer(function App() {
+  const rootStore = useRootStore();
+  const hasActiveGame = Boolean(rootStore.activeGame);
+  const [activeView, setActiveView] = useState<AppViewId>(() =>
+    rootStore.activeGame ? "current" : "games",
+  );
+
+  // No active game → Games list (e.g. after Pause, or empty first visit).
+  useEffect(() => {
+    if (!hasActiveGame && activeView === "current") {
+      setActiveView("games");
+    }
+  }, [hasActiveGame, activeView]);
+
+  function changeView(view: AppViewId): void {
+    if (view === "current" && !rootStore.activeGame) {
+      setActiveView("games");
+      return;
+    }
+    setActiveView(view);
+  }
 
   return (
     <div className="app-shell">
@@ -16,7 +37,8 @@ function App() {
         center={
           <AppToolbarActions
             activeView={activeView}
-            onChangeView={setActiveView}
+            onChangeView={changeView}
+            hasActiveGame={hasActiveGame}
           />
         }
       />
@@ -31,6 +53,6 @@ function App() {
       </main>
     </div>
   );
-}
+});
 
 export default App;
