@@ -189,7 +189,7 @@ Do **not** invent a second border color for generic chrome — use `divider` / `
 | Display | `'Onest', 'Noto Sans', system-ui, sans-serif` |
 | Mono | `'JetBrains Mono', 'IBM Plex Mono', monospace` |
 
-Fonts loaded from Google Fonts in `index.html` (Cyrillic + Latin).
+Fonts self-hosted via `@fontsource` (`src/theme/fonts.css`) — latin + cyrillic subsets for Noto Sans, Onest, JetBrains Mono.
 
 | Style | Rules |
 | --- | --- |

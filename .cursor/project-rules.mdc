@@ -32,8 +32,9 @@ alwaysApply: true
   - `points-counter-data` — games + `activeGameId` (`schemaVersion` 1)
   - `points-counter-color-mode` — `light` \| `dark`
   - `points-counter-locale` — `en` \| `ru`
+  - `points-counter-install-dismissed` — `1` when user dismissed the PWA install prompt
 - **Rules (current):** at least 1 player per game (no max); players can join an active game; one open round; close round stores one score per player; negatives allowed; at most one `active` game (switch via Games / Resume).
-- **PWA:** installable offline app shell via `vite-plugin-pwa` (manifest + service worker). Do not remove icons, manifest fields, or SW registration without replacing them.
+- **PWA:** installable offline app shell via `vite-plugin-pwa` (manifest + service worker), install prompt UI, offline banner; self-hosted fonts (`@fontsource`). Do not remove icons, manifest fields, or SW registration without replacing them.
 - Prefer **simple, accessible UI** (keyboard, labels, readable contrast).
 
 ## Editing habits
