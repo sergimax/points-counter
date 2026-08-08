@@ -5,7 +5,9 @@ import { AppHeader } from "./components/app-header";
 import { AppToolbarActions } from "./components/app-toolbar-actions";
 import { CurrentGameView } from "./components/current-game-view";
 import { GamesView } from "./components/games-view";
+import { InstallPrompt } from "./components/install-prompt";
 import { NewGameView } from "./components/new-game-view";
+import { OfflineBanner } from "./components/offline-banner";
 import { useRootStore } from "./stores/use-root-store.ts";
 import type { AppViewId } from "./types/app-view.ts";
 
@@ -42,6 +44,7 @@ const App = observer(function App() {
           />
         }
       />
+      <OfflineBanner />
       <main className="app-main">
         {activeView === "current" ? <CurrentGameView /> : null}
         {activeView === "games" ? (
@@ -54,6 +57,7 @@ const App = observer(function App() {
           <NewGameView onCreated={() => setActiveView("current")} />
         ) : null}
       </main>
+      <InstallPrompt />
     </div>
   );
 });

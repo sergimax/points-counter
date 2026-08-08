@@ -52,7 +52,11 @@ export type MessageKey =
   | "dialog.close"
   | "panel.gamesTitle"
   | "error.titleRequired"
-  | "error.playerNameRequired";
+  | "error.playerNameRequired"
+  | "pwa.offline"
+  | "pwa.installHint"
+  | "pwa.installAction"
+  | "pwa.installDismiss";
 
 type Messages = Record<MessageKey, string>;
 
@@ -107,6 +111,10 @@ const en: Messages = {
   "panel.gamesTitle": "Games",
   "error.titleRequired": "Enter a game title.",
   "error.playerNameRequired": "Every player needs a name.",
+  "pwa.offline": "You’re offline. Scoring still works on this device.",
+  "pwa.installHint": "Install Points Counter for quick access offline.",
+  "pwa.installAction": "Install",
+  "pwa.installDismiss": "Not now",
 };
 
 const ru: Messages = {
@@ -161,6 +169,10 @@ const ru: Messages = {
   "panel.gamesTitle": "Игры",
   "error.titleRequired": "Введите название игры.",
   "error.playerNameRequired": "У каждого игрока должно быть имя.",
+  "pwa.offline": "Нет сети. Счёт на этом устройстве по-прежнему работает.",
+  "pwa.installHint": "Установите «Счётчик очков» для быстрого офлайн-доступа.",
+  "pwa.installAction": "Установить",
+  "pwa.installDismiss": "Не сейчас",
 };
 
 export const messagesByLocale: Record<Locale, Messages> = { en, ru };
