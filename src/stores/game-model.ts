@@ -3,7 +3,8 @@
  *
  * Scoring model:
  * - `currentScores` = open round (edited with +/-)
- * - `rounds` = closed history (one score per player per round)
+ * - `currentRoundStartedAt` = when the open round began
+ * - `rounds` = closed history (one score per player per round, with startedAt)
  * - Live total = sum of closed rounds + current round
  */
 import {
@@ -44,6 +45,9 @@ export class GameModel {
   rounds: Round[];
   /** Open round scores keyed by player id. */
   currentScores: Record<string, number>;
+  /** When the open round began. */
+  currentRoundStartedAt: string;
+  /** Game creation time. */
   createdAt: string;
   updatedAt: string;
 
@@ -59,6 +63,7 @@ export class GameModel {
       scores: { ...round.scores },
     }));
     this.currentScores = { ...snapshot.currentScores };
+    this.currentRoundStartedAt = snapshot.currentRoundStartedAt;
     this.createdAt = snapshot.createdAt;
     this.updatedAt = snapshot.updatedAt;
 
@@ -70,6 +75,7 @@ export class GameModel {
       players: observable.shallow,
       rounds: observable.shallow,
       currentScores: observable,
+      currentRoundStartedAt: observable,
       updatedAt: observable,
       nextRoundNumber: computed,
       touch: action,
@@ -105,6 +111,7 @@ export class GameModel {
       players,
       rounds: [],
       currentScores: zeroScores(players),
+      currentRoundStartedAt: now,
       createdAt: now,
       updatedAt: now,
     });
@@ -175,17 +182,21 @@ export class GameModel {
 
   /**
    * Freeze current scores into history and reset the open round to zeros.
+   * Preserves the open round's `startedAt` on the closed record; new round starts now.
    * @returns the newly closed round
    */
   closeRound(): Round {
+    const now = new Date().toISOString();
     const closed: Round = {
       id: createId("round"),
       number: this.nextRoundNumber,
       scores: { ...this.currentScores },
-      closedAt: new Date().toISOString(),
+      startedAt: this.currentRoundStartedAt,
+      closedAt: now,
     };
     this.rounds = [...this.rounds, closed];
     this.currentScores = zeroScores(this.players);
+    this.currentRoundStartedAt = now;
     this.touch();
     return closed;
   }
@@ -204,6 +215,7 @@ export class GameModel {
         scores: { ...round.scores },
       })),
       currentScores: { ...this.currentScores },
+      currentRoundStartedAt: this.currentRoundStartedAt,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
     };

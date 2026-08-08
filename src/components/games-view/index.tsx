@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import { observer } from "mobx-react-lite";
 import { useTranslation } from "../../i18n/use-translation.ts";
+import { formatDateTime } from "../../lib/format-date.ts";
 import { getColorTokens } from "../../lib/player-colors.ts";
 import type { GameModel } from "../../stores/game-model.ts";
 import { useRootStore } from "../../stores/use-root-store.ts";
@@ -20,17 +21,6 @@ import { GameIcon } from "../entity-icons/index.tsx";
 type GamesViewProps = {
   onActivated: () => void;
 };
-
-function formatUpdated(iso: string, locale: string): string {
-  try {
-    return new Intl.DateTimeFormat(locale, {
-      dateStyle: "medium",
-      timeStyle: "short",
-    }).format(new Date(iso));
-  } catch {
-    return iso;
-  }
-}
 
 const GameListItem = observer(function GameListItem({
   game,
@@ -103,8 +93,8 @@ const GameListItem = observer(function GameListItem({
                 variant={isActive ? "filled" : "outlined"}
               />
               <Typography variant="caption" color="text.secondary">
-                {t("game.updated", {
-                  date: formatUpdated(game.updatedAt, locale),
+                {t("game.created", {
+                  date: formatDateTime(game.createdAt, locale),
                 })}
               </Typography>
               <Typography variant="caption" color="text.secondary">

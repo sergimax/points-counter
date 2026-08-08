@@ -31,7 +31,9 @@ export type MessageKey =
   | "game.deleteConfirm"
   | "game.activeBadge"
   | "game.pausedBadge"
+  | "game.created"
   | "game.updated"
+  | "game.roundStarted"
   | "score.minus"
   | "score.plus"
   | "dialog.newGameTitle"
@@ -82,7 +84,9 @@ const en: Messages = {
   "game.deleteConfirm": "Delete “{title}”? This cannot be undone.",
   "game.activeBadge": "Active",
   "game.pausedBadge": "Paused",
+  "game.created": "Created {date}",
   "game.updated": "Updated {date}",
+  "game.roundStarted": "Started {date}",
   "score.minus": "Subtract 1 from {name}",
   "score.plus": "Add 1 to {name}",
   "dialog.newGameTitle": "New game",
@@ -133,7 +137,9 @@ const ru: Messages = {
   "game.deleteConfirm": "Удалить «{title}»? Это нельзя отменить.",
   "game.activeBadge": "Активна",
   "game.pausedBadge": "На паузе",
+  "game.created": "Создано {date}",
   "game.updated": "Обновлено {date}",
+  "game.roundStarted": "Начало {date}",
   "score.minus": "Вычесть 1 у {name}",
   "score.plus": "Добавить 1 {name}",
   "dialog.newGameTitle": "Новая игра",

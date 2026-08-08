@@ -4,6 +4,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { Box, Button, IconButton, Paper, Stack, Typography } from "@mui/material";
 import { observer } from "mobx-react-lite";
 import { useTranslation } from "../../i18n/use-translation.ts";
+import { formatDateTime } from "../../lib/format-date.ts";
 import { getColorTokens } from "../../lib/player-colors.ts";
 import type { GameModel } from "../../stores/game-model.ts";
 import { useRootStore } from "../../stores/use-root-store.ts";
@@ -135,7 +136,7 @@ const PlayerScoreRow = observer(function PlayerScoreRow({
 });
 
 export const CurrentGameView = observer(function CurrentGameView() {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
   const rootStore = useRootStore();
   const game = rootStore.activeGame;
 
@@ -192,8 +193,17 @@ export const CurrentGameView = observer(function CurrentGameView() {
             >
               {game.title}
             </Typography>
-            <Typography variant="caption" color="text.secondary">
+            <Typography variant="caption" color="text.secondary" sx={{ display: "block" }}>
               {t("game.roundNumber", { number: game.nextRoundNumber })}
+              {" · "}
+              {t("game.roundStarted", {
+                date: formatDateTime(game.currentRoundStartedAt, locale),
+              })}
+            </Typography>
+            <Typography variant="caption" color="text.secondary" sx={{ display: "block" }}>
+              {t("game.created", {
+                date: formatDateTime(game.createdAt, locale),
+              })}
             </Typography>
           </Box>
         </Stack>
