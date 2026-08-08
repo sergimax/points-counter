@@ -21,6 +21,8 @@ export type MessageKey =
   | "empty.noGames"
   | "game.round"
   | "game.summary"
+  | "game.before"
+  | "game.forRound"
   | "game.roundNumber"
   | "game.historyTitle"
   | "game.historyEmpty"
@@ -36,6 +38,7 @@ export type MessageKey =
   | "game.roundStarted"
   | "score.minus"
   | "score.plus"
+  | "score.diff"
   | "dialog.newGameTitle"
   | "dialog.gameTitle"
   | "dialog.gameIcon"
@@ -74,6 +77,8 @@ const en: Messages = {
   "empty.noGames": "No saved games yet.",
   "game.round": "Round",
   "game.summary": "Total",
+  "game.before": "Before",
+  "game.forRound": "This round",
   "game.roundNumber": "Round {number}",
   "game.historyTitle": "Round history",
   "game.historyEmpty": "No closed rounds yet.",
@@ -89,6 +94,7 @@ const en: Messages = {
   "game.roundStarted": "Started {date}",
   "score.minus": "Subtract 1 from {name}",
   "score.plus": "Add 1 to {name}",
+  "score.diff": "Round change: {value}",
   "dialog.newGameTitle": "New game",
   "dialog.gameTitle": "Game title",
   "dialog.gameIcon": "Game icon",
@@ -127,6 +133,8 @@ const ru: Messages = {
   "empty.noGames": "Пока нет сохранённых игр.",
   "game.round": "Раунд",
   "game.summary": "Итого",
+  "game.before": "Было",
+  "game.forRound": "За раунд",
   "game.roundNumber": "Раунд {number}",
   "game.historyTitle": "История раундов",
   "game.historyEmpty": "Закрытых раундов пока нет.",
@@ -142,6 +150,7 @@ const ru: Messages = {
   "game.roundStarted": "Начало {date}",
   "score.minus": "Вычесть 1 у {name}",
   "score.plus": "Добавить 1 {name}",
+  "score.diff": "Изменение за раунд: {value}",
   "dialog.newGameTitle": "Новая игра",
   "dialog.gameTitle": "Название игры",
   "dialog.gameIcon": "Иконка игры",
