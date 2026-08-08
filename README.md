@@ -19,7 +19,7 @@ Everything runs in the browser: **no backend**, no cloud sync, and no special ho
 - Save many games; **one active** at a time — switch via **Resume** in **Games**
 - Round history with sticky round labels when many players force horizontal scroll
 - Wide layout: two-column player list; EN/RU chrome; light/dark theme
-- **PWA / offline:** installable on phone; app shell and fonts cache after first online visit (scores stay in `localStorage`)
+- **PWA / offline:** installable on phone; self-hosted fonts; install prompt + offline banner; scores stay in `localStorage`
 
 ## Data and state
 
@@ -31,6 +31,7 @@ Everything runs in the browser: **no backend**, no cloud sync, and no special ho
 | `points-counter-data` | Games payload (`schemaVersion` 1): `games[]`, `activeGameId` |
 | `points-counter-color-mode` | `light` \| `dark` |
 | `points-counter-locale` | `en` \| `ru` (UI strings; default `en`) |
+| `points-counter-install-dismissed` | `1` if the install prompt was dismissed |
 
 - **Game timestamps:** `createdAt`; open round `currentRoundStartedAt`; closed rounds `startedAt` + `closedAt`.
 - **Game status:** `active` \| `paused`. Activating a game pauses any previous active game.
@@ -39,10 +40,6 @@ Everything runs in the browser: **no backend**, no cloud sync, and no special ho
 ## Design
 
 Visual tokens and UI recipes: [`docs/design/design-system.md`](docs/design/design-system.md) and [`docs/design/design-tokens.json`](docs/design/design-tokens.json).
-
-## Roadmap (planned)
-
-- Optional polish: install prompt UI, offline indicator, self-hosted fonts (no Google Fonts dependency).
 
 ## Scripts
 
