@@ -11,12 +11,14 @@ Portable visual tokens and UI recipes used by this app. Use as:
 | Layer | Path |
 | --- | --- |
 | MUI theme | `src/theme/create-app-theme.ts` (`appThemeTokens`) |
+| Self-hosted fonts | `src/theme/fonts.css` (`@fontsource` latin + cyrillic) |
 | Quiet / spot links | `src/theme/links.css` |
 | Tooltip surfaces | `src/theme/tooltip-surface.ts` |
 | CSS variables + scrollbars | `src/index.css` |
 | App shell spacing | `src/App.css` |
 | Color mode sync | `src/contexts/color-mode-provider.tsx`, `src/hooks/color-mode.ts` |
-| Locale (chrome) | `src/i18n/` — storage key `points-counter-locale` |
+| Locale (chrome + scoring) | `src/i18n/` — storage key `points-counter-locale` |
+| PWA chrome | `vite.config.ts` (`vite-plugin-pwa`), `install-prompt/`, `offline-banner/` |
 | Machine tokens | `docs/design/design-tokens.json` |
 
 When tokens change in code, update this doc and `design-tokens.json` in the same change.
@@ -61,6 +63,8 @@ Sticky AppBar (blurred paper bg, bottom border):
 | **Right** (`flexShrink: 0`) | Locale EN↔RU · theme toggle · GitHub · author home · version caption `v.X.Y.Z` (mono, not a button) |
 
 View nav uses space-aware layout (`ResizeObserver` on the center slot), not a fixed breakpoint alone.
+
+Below the AppBar: **offline banner** when `navigator.onLine` is false. Bottom snackbar: **install prompt** when `beforeinstallprompt` fires (dismiss stored as `points-counter-install-dismissed`).
 
 ---
 
@@ -285,8 +289,10 @@ Global in `index.css`:
 
 | Key | Contents |
 | --- | --- |
+| `points-counter-data` | Games payload (`schemaVersion` 1): `games[]`, `activeGameId` |
 | `points-counter-color-mode` | `light` \| `dark` |
-| `points-counter-locale` | `en` \| `ru` (chrome strings; default `en`) |
+| `points-counter-locale` | `en` \| `ru` (chrome + scoring UI; default `en`) |
+| `points-counter-install-dismissed` | `1` if PWA install prompt was dismissed |
 
 ---
 
@@ -297,7 +303,7 @@ Global in `index.css`:
 1. Copy tokens from `design-tokens.json`
 2. Port `createAppTheme` structure (palette: primary=ink, secondary=brand, success=ok, error=danger; fonts; CssBaseline atmosphere; Button / Paper / Table / Dialog / Tooltip / OutlinedInput / Menu / Switch)
 3. Wire `data-color-mode` + matching CSS vars before paint
-4. Load Noto Sans + Onest + JetBrains Mono (Cyrillic + Latin)
+4. Self-host Noto Sans + Onest + JetBrains Mono via `@fontsource` (latin + cyrillic subsets; see `src/theme/fonts.css`)
 5. Implement quiet vs `.link-spot` links (`links.css`)
 6. Keep border `#8a8a8a`, radii 8/10/12
 7. Contrast-check text / muted / brand / ok / danger / link / link-spot / border

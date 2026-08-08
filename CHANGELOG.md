@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.3.0] - 2026-08-08
+
+### Added
+
+- **PWA:** web app manifest, install icons (192/512 + Apple touch), and a service worker that precaches the app shell (including fonts) for offline use after the first visit.
+- `npm run generate:pwa-icons` to regenerate PWA icons from `public/logo.svg`.
+- Install prompt (Chrome/Edge/Android `beforeinstallprompt`) and an offline banner; dismiss preference in `points-counter-install-dismissed`.
+- Self-hosted UI fonts via `@fontsource` (Noto Sans, Onest, JetBrains Mono) — no Google Fonts CDN.
+
 ## [0.2.0] - 2026-08-08
 
 ### Added
@@ -13,7 +22,6 @@
 - Shared icon and color pickers for games and players; EN/RU scoring chrome.
 - App views: **Current game**, **Games**, **New game**; header nav shows inline buttons when the toolbar has enough width, otherwise a compact menu.
 - Wide screens: two-column player list; history matches that content width.
-- **PWA:** web app manifest, install icons (192/512 + Apple touch), service worker with app-shell precache and Google Fonts runtime cache for offline use after first visit.
 
 ### Changed
 

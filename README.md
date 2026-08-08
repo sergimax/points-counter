@@ -3,7 +3,7 @@
 A **local-first** web app for **counting and processing points** in board games.
 Everything runs in the browser: **no backend**, no cloud sync, and no special hosted data.
 
-![Версия приложения](https://img.shields.io/badge/App_version-0.2.0-purple)
+![Версия приложения](https://img.shields.io/badge/App_version-0.3.0-purple)
 
 ## Stack
 
