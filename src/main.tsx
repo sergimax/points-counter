@@ -1,10 +1,17 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { AppThemeProvider } from "./components/app-theme-provider/index.tsx";
+import { LocaleProvider } from "./i18n/locale-provider.tsx";
+import "./index.css";
+import "./theme/links.css";
+import App from "./App.tsx";
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App />
+    <AppThemeProvider>
+      <LocaleProvider>
+        <App />
+      </LocaleProvider>
+    </AppThemeProvider>
   </StrictMode>,
-)
+);

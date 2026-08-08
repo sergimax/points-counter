@@ -2,9 +2,54 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>temp-vite-app</title>
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="Local-first board game points counter. Track scores for players and sessions in the browser."
+    />
+    <meta name="theme-color" content="#fcfbf9" />
+    <!-- Sync theme before paint (same key/logic as color-mode) to avoid a light flash. -->
+    <script>
+      (function () {
+        var storageKey = "points-counter-color-mode";
+        var mode = "light";
+
+        try {
+          var stored = localStorage.getItem(storageKey);
+          if (stored === "light" || stored === "dark") {
+            mode = stored;
+          } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            mode = "dark";
+          }
+        } catch (error) {
+          void error;
+        }
+
+        document.documentElement.dataset.colorMode = mode;
+        var themeMeta = document.querySelector('meta[name="theme-color"]');
+        if (themeMeta) {
+          themeMeta.setAttribute(
+            "content",
+            mode === "dark" ? "#1a1a1a" : "#fcfbf9",
+          );
+        }
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Onest:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <title>Points Counter</title>
+    <meta property="og:title" content="Points Counter" />
+    <meta
+      property="og:description"
+      content="Local-first board game points counter. Track scores for players and sessions in the browser."
+    />
+    <meta property="og:type" content="website" />
   </head>
   <body>
     <div id="root"></div>

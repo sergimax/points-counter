@@ -1,0 +1,22 @@
+.app-footer {
+  padding: 1rem 1.25rem 1.5rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+}
+
+@media (min-width: 600px) {
+  .app-footer {
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+  }
+}
+
+.app-footer-line {
+  font-family: var(--font-body);
+}
+
+.app-footer-version {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
