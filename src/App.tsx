@@ -16,7 +16,7 @@ const App = observer(function App() {
     rootStore.activeGame ? "current" : "games",
   );
 
-  // No active game → Games list (e.g. after Pause, or empty first visit).
+  // No active game → Games list (empty first visit, or after deleting the active game).
   useEffect(() => {
     if (!hasActiveGame && activeView === "current") {
       setActiveView("games");
