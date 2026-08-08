@@ -16,11 +16,13 @@ import type { AppViewId } from "../../types/app-view.ts";
 type AppToolbarActionsProps = {
   activeView: AppViewId;
   onChangeView: (view: AppViewId) => void;
+  hasActiveGame: boolean;
 };
 
 export function AppToolbarActions({
   activeView,
   onChangeView,
+  hasActiveGame,
 }: AppToolbarActionsProps) {
   const { t } = useTranslation();
   const theme = useTheme();
@@ -34,13 +36,13 @@ export function AppToolbarActions({
   function navButton(view: AppViewId, label: string) {
     const selected = activeView === view;
     const isNew = view === "new";
+    const disabled = view === "current" && !hasActiveGame;
     return (
       <Button
         size="small"
         variant={selected || isNew ? "contained" : "outlined"}
-        color={
-          selected ? "inherit" : isNew ? "secondary" : "inherit"
-        }
+        color={selected ? "inherit" : isNew ? "secondary" : "inherit"}
+        disabled={disabled}
         onClick={() => onChangeView(view)}
       >
         {label}
@@ -75,6 +77,7 @@ export function AppToolbarActions({
           </MenuItem>
           <MenuItem
             selected={activeView === "current"}
+            disabled={!hasActiveGame}
             onClick={() => {
               closeMenu();
               onChangeView("current");
