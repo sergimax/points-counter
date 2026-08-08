@@ -2,7 +2,6 @@ import {
   DATA_SCHEMA_VERSION,
   DATA_STORAGE_KEY,
   GAME_ICON_IDS,
-  MAX_PLAYERS,
   COLOR_IDS,
   PLAYER_ICON_IDS,
   type GameIconId,
@@ -123,7 +122,7 @@ function parseGame(value: unknown): GameSnapshot | null {
   if (!Array.isArray(value.players) || !Array.isArray(value.rounds)) {
     return null;
   }
-  if (value.players.length < 1 || value.players.length > MAX_PLAYERS) {
+  if (value.players.length < 1) {
     return null;
   }
 
