@@ -2,20 +2,25 @@
   "$schemaComment": "Portable design tokens for points-counter — chrome + shared UI recipes.",
   "meta": {
     "name": "points-counter",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "versionNote": "Tracks app package.json when design tokens change with a release; not an independent semver stream.",
     "sources": [
       "src/theme/create-app-theme.ts",
+      "src/theme/fonts.css",
       "src/theme/links.css",
       "src/theme/tooltip-surface.ts",
       "src/index.css",
       "src/App.css",
       "src/components/app-header/index.tsx",
-      "src/components/app-toolbar-actions/index.tsx"
+      "src/components/app-toolbar-actions/index.tsx",
+      "src/components/install-prompt/index.tsx",
+      "src/components/offline-banner/index.tsx",
+      "vite.config.ts"
     ],
     "muiSpacingPx": 8,
     "bilingualFonts": {
       "rule": "RU+EN — Cyrillic + Latin required",
+      "delivery": "self-hosted @fontsource subsets (no Google Fonts CDN)",
       "body": "Noto Sans",
       "display": "Onest",
       "mono": ["JetBrains Mono", "IBM Plex Mono"]
@@ -108,6 +113,25 @@
     "default": "en",
     "values": ["en", "ru"],
     "scope": "chrome + scoring UI strings (en / ru)"
+  },
+  "persistence": {
+    "gameData": {
+      "storageKey": "points-counter-data",
+      "schemaVersion": 1,
+      "note": "games[] + activeGameId"
+    },
+    "installDismissed": {
+      "storageKey": "points-counter-install-dismissed",
+      "value": "1"
+    }
+  },
+  "pwa": {
+    "plugin": "vite-plugin-pwa",
+    "registerType": "autoUpdate",
+    "base": "/points-counter/",
+    "icons": ["pwa-192.png", "pwa-512.png", "apple-touch-icon.png"],
+    "offlineBanner": "src/components/offline-banner",
+    "installPrompt": "src/components/install-prompt"
   },
   "cssVariables": {
     "light": {
