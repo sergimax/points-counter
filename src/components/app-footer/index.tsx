@@ -8,17 +8,14 @@ export function AppFooter() {
     >
       <span className="app-footer-line">
         version{" "}
-        <span className="app-footer-version">{__APP_VERSION__}</span>
-        {" "}
-        by{" "}
+        <span className="app-footer-version">{__APP_VERSION__}</span> by{" "}
         <a
           href="https://github.com/sergimax"
           target="_blank"
           rel="noopener noreferrer"
         >
           sergimax
-        </a>
-        {" "}
+        </a>{" "}
         via{" "}
         <a
           href="https://cursor.com"

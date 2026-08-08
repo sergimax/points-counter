@@ -1,0 +1,31 @@
+/**
+ * Link recipes — quiet (informational) vs spot (in-prose action).
+ * See docs/design/design-system.md.
+ */
+
+a:not(.link-spot) {
+  color: var(--link);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+a:not(.link-spot):hover {
+  color: var(--link-spot);
+}
+
+a.link-spot {
+  color: var(--link-spot);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+a.link-spot:hover {
+  color: var(--brand-border);
+}
