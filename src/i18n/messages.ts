@@ -11,9 +11,11 @@ export type MessageKey =
   | "header.authorSiteAria"
   | "header.versionAria"
   | "toolbar.newGame"
+  | "toolbar.currentGame"
   | "toolbar.games"
   | "toolbar.closeRound"
   | "toolbar.pauseGame"
+  | "toolbar.menu"
   | "empty.noActiveGame"
   | "empty.noActiveGameHint"
   | "empty.noGames"
@@ -60,9 +62,11 @@ const en: Messages = {
   "header.authorSiteAria": "Author website",
   "header.versionAria": "Version {version}",
   "toolbar.newGame": "New game",
+  "toolbar.currentGame": "Current game",
   "toolbar.games": "Games",
   "toolbar.closeRound": "Close round",
   "toolbar.pauseGame": "Pause game",
+  "toolbar.menu": "Menu",
   "empty.noActiveGame": "No active game",
   "empty.noActiveGameHint": "Create a new game or resume a saved one from Games.",
   "empty.noGames": "No saved games yet.",
@@ -108,9 +112,11 @@ const ru: Messages = {
   "header.authorSiteAria": "Сайт автора",
   "header.versionAria": "Версия {version}",
   "toolbar.newGame": "Новая игра",
+  "toolbar.currentGame": "Текущая игра",
   "toolbar.games": "Игры",
   "toolbar.closeRound": "Закрыть раунд",
   "toolbar.pauseGame": "Пауза",
+  "toolbar.menu": "Меню",
   "empty.noActiveGame": "Нет активной игры",
   "empty.noActiveGameHint":
     "Создайте новую игру или возобновите сохранённую в списке «Игры».",

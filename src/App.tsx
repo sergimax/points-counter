@@ -1,45 +1,34 @@
 import { useState } from "react";
 import "./App.css";
 import { AppHeader } from "./components/app-header";
-import {
-  AppToolbarActions,
-  type ToolbarPanelId,
-} from "./components/app-toolbar-actions";
+import { AppToolbarActions } from "./components/app-toolbar-actions";
 import { CurrentGameView } from "./components/current-game-view";
-import { GamesPanel } from "./components/games-panel";
-import { NewGameDialog } from "./components/new-game-dialog";
+import { GamesView } from "./components/games-view";
+import { NewGameView } from "./components/new-game-view";
+import type { AppViewId } from "./types/app-view.ts";
 
 function App() {
-  const [openPanel, setOpenPanel] = useState<ToolbarPanelId>(null);
-  const [newGameOpen, setNewGameOpen] = useState(false);
+  const [activeView, setActiveView] = useState<AppViewId>("current");
 
   return (
     <div className="app-shell">
       <AppHeader
         center={
           <AppToolbarActions
-            openPanel={openPanel}
-            onToggleGames={() =>
-              setOpenPanel((previous) => (previous === "games" ? null : "games"))
-            }
-            onOpenNewGame={() => {
-              setOpenPanel(null);
-              setNewGameOpen(true);
-            }}
+            activeView={activeView}
+            onChangeView={setActiveView}
           />
         }
       />
       <main className="app-main">
-        <GamesPanel
-          open={openPanel === "games"}
-          onClose={() => setOpenPanel(null)}
-        />
-        <CurrentGameView />
+        {activeView === "current" ? <CurrentGameView /> : null}
+        {activeView === "games" ? (
+          <GamesView onActivated={() => setActiveView("current")} />
+        ) : null}
+        {activeView === "new" ? (
+          <NewGameView onCreated={() => setActiveView("current")} />
+        ) : null}
       </main>
-      <NewGameDialog
-        open={newGameOpen}
-        onClose={() => setNewGameOpen(false)}
-      />
     </div>
   );
 }

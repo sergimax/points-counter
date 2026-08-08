@@ -1,6 +1,7 @@
 import AddIcon from "@mui/icons-material/Add";
+import PauseIcon from "@mui/icons-material/Pause";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { Box, IconButton, Paper, Stack, Typography } from "@mui/material";
+import { Box, Button, IconButton, Paper, Stack, Typography } from "@mui/material";
 import { observer } from "mobx-react-lite";
 import { useTranslation } from "../../i18n/use-translation.ts";
 import { getColorTokens } from "../../lib/player-colors.ts";
@@ -158,34 +159,62 @@ export const CurrentGameView = observer(function CurrentGameView() {
 
   return (
     <Stack spacing={2} sx={{ maxWidth: 720 }}>
-      <Stack direction="row" spacing={1.25} sx={{ alignItems: "center" }}>
-        <Box
-          sx={{
-            display: "grid",
-            placeItems: "center",
-            width: 40,
-            height: 40,
-            borderRadius: 1,
-            bgcolor: gameColor.soft,
-            color: gameColor.main,
-            border: `1px solid color-mix(in srgb, ${gameColor.main} 45%, transparent)`,
-          }}
-        >
-          <GameIcon iconId={game.iconId} />
-        </Box>
-        <Box sx={{ minWidth: 0 }}>
-          <Typography
-            component="h2"
-            variant="h6"
-            noWrap
-            sx={{ fontFamily: "var(--font-display)", lineHeight: 1.2 }}
+      <Stack
+        direction={{ xs: "column", sm: "row" }}
+        spacing={1.25}
+        sx={{
+          alignItems: { sm: "center" },
+          justifyContent: "space-between",
+        }}
+      >
+        <Stack direction="row" spacing={1.25} sx={{ alignItems: "center", minWidth: 0 }}>
+          <Box
+            sx={{
+              display: "grid",
+              placeItems: "center",
+              width: 40,
+              height: 40,
+              borderRadius: 1,
+              bgcolor: gameColor.soft,
+              color: gameColor.main,
+              border: `1px solid color-mix(in srgb, ${gameColor.main} 45%, transparent)`,
+              flexShrink: 0,
+            }}
           >
-            {game.title}
-          </Typography>
-          <Typography variant="caption" color="text.secondary">
-            {t("game.roundNumber", { number: game.nextRoundNumber })}
-          </Typography>
-        </Box>
+            <GameIcon iconId={game.iconId} />
+          </Box>
+          <Box sx={{ minWidth: 0 }}>
+            <Typography
+              component="h2"
+              variant="h6"
+              noWrap
+              sx={{ fontFamily: "var(--font-display)", lineHeight: 1.2 }}
+            >
+              {game.title}
+            </Typography>
+            <Typography variant="caption" color="text.secondary">
+              {t("game.roundNumber", { number: game.nextRoundNumber })}
+            </Typography>
+          </Box>
+        </Stack>
+
+        <Stack direction="row" spacing={1} sx={{ flexShrink: 0, flexWrap: "wrap" }}>
+          <Button
+            size="small"
+            variant="outlined"
+            onClick={() => rootStore.closeActiveRound()}
+          >
+            {t("toolbar.closeRound")}
+          </Button>
+          <Button
+            size="small"
+            variant="outlined"
+            startIcon={<PauseIcon />}
+            onClick={() => rootStore.pauseActiveGame()}
+          >
+            {t("toolbar.pauseGame")}
+          </Button>
+        </Stack>
       </Stack>
 
       <Stack spacing={1.25}>

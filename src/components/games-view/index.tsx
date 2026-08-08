@@ -1,4 +1,3 @@
-import CloseIcon from "@mui/icons-material/Close";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import PauseIcon from "@mui/icons-material/Pause";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
@@ -18,9 +17,8 @@ import type { GameModel } from "../../stores/game-model.ts";
 import { useRootStore } from "../../stores/use-root-store.ts";
 import { GameIcon } from "../entity-icons/index.tsx";
 
-type GamesPanelProps = {
-  open: boolean;
-  onClose: () => void;
+type GamesViewProps = {
+  onActivated: () => void;
 };
 
 function formatUpdated(iso: string, locale: string): string {
@@ -36,8 +34,10 @@ function formatUpdated(iso: string, locale: string): string {
 
 const GameListItem = observer(function GameListItem({
   game,
+  onActivated,
 }: {
   game: GameModel;
+  onActivated: () => void;
 }) {
   const { t, locale } = useTranslation();
   const rootStore = useRootStore();
@@ -129,7 +129,10 @@ const GameListItem = observer(function GameListItem({
               variant="contained"
               color="primary"
               startIcon={<PlayArrowIcon />}
-              onClick={() => rootStore.activateGame(game.id)}
+              onClick={() => {
+                rootStore.activateGame(game.id);
+                onActivated();
+              }}
             >
               {t("game.activate")}
             </Button>
@@ -155,58 +158,37 @@ const GameListItem = observer(function GameListItem({
   );
 });
 
-export const GamesPanel = observer(function GamesPanel({
-  open,
-  onClose,
-}: GamesPanelProps) {
+export const GamesView = observer(function GamesView({
+  onActivated,
+}: GamesViewProps) {
   const { t } = useTranslation();
   const rootStore = useRootStore();
 
-  if (!open) {
-    return null;
-  }
-
   return (
-    <Paper
-      variant="outlined"
-      sx={{
-        p: { xs: 1.5, sm: 2 },
-        mb: 2,
-        maxWidth: 720,
-      }}
-    >
-      <Stack
-        direction="row"
-        sx={{
-          alignItems: "center",
-          justifyContent: "space-between",
-          mb: 1.5,
-        }}
+    <Stack spacing={1.5} sx={{ maxWidth: 720 }}>
+      <Typography
+        component="h2"
+        variant="h6"
+        sx={{ fontFamily: "var(--font-display)" }}
       >
-        <Typography
-          variant="h6"
-          sx={{ fontFamily: "var(--font-display)", fontSize: "1.1rem" }}
-        >
-          {t("panel.gamesTitle")}
-        </Typography>
-        <IconButton
-          size="small"
-          onClick={onClose}
-          aria-label={t("dialog.close")}
-        >
-          <CloseIcon fontSize="small" />
-        </IconButton>
-      </Stack>
+        {t("panel.gamesTitle")}
+      </Typography>
 
       {rootStore.sortedGames.length === 0 ? (
-        <Typography color="text.secondary">{t("empty.noGames")}</Typography>
+        <Paper variant="outlined" sx={{ p: { xs: 2, sm: 3 } }}>
+          <Typography color="text.secondary">{t("empty.noGames")}</Typography>
+        </Paper>
       ) : (
         <Stack spacing={1.25}>
           {rootStore.sortedGames.map((game) => (
-            <GameListItem key={game.id} game={game} />
+            <GameListItem
+              key={game.id}
+              game={game}
+              onActivated={onActivated}
+            />
           ))}
         </Stack>
       )}
-    </Paper>
+    </Stack>
   );
 });
