@@ -20,6 +20,7 @@ import type { GameModel } from "../../stores/game-model.ts";
 import { useRootStore } from "../../stores/use-root-store.ts";
 import { GameIcon, PlayerIcon } from "../entity-icons/index.tsx";
 import { RoundHistory } from "../round-history/index.tsx";
+import { AddPlayerForm } from "../add-player-form/index.tsx";
 
 /** GitHub-style signed delta for the open round (+3 / -2 / 0). */
 function formatRoundDiff(delta: number): string {
@@ -405,6 +406,10 @@ export const CurrentGameView = observer(function CurrentGameView() {
         {game.players.map((player) => (
           <PlayerScoreRow key={player.id} game={game} playerId={player.id} />
         ))}
+        <AddPlayerForm
+          nextPlayerIndex={game.players.length}
+          onAdd={(player) => rootStore.addPlayerToActiveGame(player)}
+        />
       </Stack>
 
       <RoundHistory game={game} />

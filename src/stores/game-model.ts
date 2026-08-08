@@ -20,6 +20,7 @@ import type {
   GameIconId,
   GameSnapshot,
   GameStatus,
+  NewPlayerInput,
   Player,
   Round,
 } from "../types/game.ts";
@@ -85,6 +86,7 @@ export class GameModel {
       adjustScore: action,
       setScore: action,
       closeRound: action,
+      addPlayer: action,
       toSnapshot: false,
       roundScore: false,
       closedScore: false,
@@ -199,6 +201,36 @@ export class GameModel {
     this.currentRoundStartedAt = now;
     this.touch();
     return closed;
+  }
+
+  /**
+   * Join a player mid-game. Open round starts at 0; closed rounds get 0 for history.
+   */
+  addPlayer(input: NewPlayerInput): Player {
+    const name = input.name.trim();
+    if (!name) {
+      throw new Error("Player name is required");
+    }
+    const player: Player = {
+      id: createId("player"),
+      name,
+      iconId: input.iconId,
+      colorId: input.colorId,
+    };
+    this.players = [...this.players, player];
+    this.currentScores = {
+      ...this.currentScores,
+      [player.id]: 0,
+    };
+    this.rounds = this.rounds.map((round) => ({
+      ...round,
+      scores: {
+        ...round.scores,
+        [player.id]: 0,
+      },
+    }));
+    this.touch();
+    return player;
   }
 
   /** Plain JSON snapshot for persistence / export. */

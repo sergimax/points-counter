@@ -19,9 +19,9 @@ import {
 } from "../lib/storage.ts";
 import {
   DATA_SCHEMA_VERSION,
-  MAX_PLAYERS,
   MIN_PLAYERS,
   type CreateGameInput,
+  type NewPlayerInput,
 } from "../types/game.ts";
 import { GameModel } from "./game-model.ts";
 
@@ -48,6 +48,7 @@ export class RootStore {
       deleteGame: action,
       activateGame: action,
       closeActiveRound: action,
+      addPlayerToActiveGame: action,
     });
 
     this.hydrate();
@@ -98,11 +99,8 @@ export class RootStore {
     if (!title) {
       throw new Error("Game title is required");
     }
-    if (
-      input.players.length < MIN_PLAYERS ||
-      input.players.length > MAX_PLAYERS
-    ) {
-      throw new Error(`Players must be between ${MIN_PLAYERS} and ${MAX_PLAYERS}`);
+    if (input.players.length < MIN_PLAYERS) {
+      throw new Error(`At least ${MIN_PLAYERS} player is required`);
     }
     for (const player of input.players) {
       if (!player.name.trim()) {
@@ -160,6 +158,11 @@ export class RootStore {
   /** Snapshot current-round scores into history and start a fresh round. */
   closeActiveRound(): void {
     this.activeGame?.closeRound();
+  }
+
+  /** Add a player to the active game (open round starts at 0; past rounds count as 0). */
+  addPlayerToActiveGame(input: NewPlayerInput): void {
+    this.activeGame?.addPlayer(input);
   }
 
   /** Tear down the persist reaction (tests / hot dispose). */

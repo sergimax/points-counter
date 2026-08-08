@@ -20,7 +20,6 @@ import { useRootStore } from "../../stores/use-root-store.ts";
 import {
   COLOR_IDS,
   GAME_ICON_IDS,
-  MAX_PLAYERS,
   MIN_PLAYERS,
   PLAYER_ICON_IDS,
   type ColorId,
@@ -391,7 +390,6 @@ export function NewGameView({ onCreated }: NewGameViewProps) {
                 createDraftPlayer(previous.length),
               ])
             }
-            disabled={players.length >= MAX_PLAYERS}
             size="small"
             sx={{ mt: 1.25 }}
           >
