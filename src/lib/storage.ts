@@ -93,10 +93,14 @@ function parseRound(value: unknown): Round | null {
   if (!scores) {
     return null;
   }
+  // Legacy saves may lack startedAt — fall back to closedAt.
+  const startedAt =
+    typeof value.startedAt === "string" ? value.startedAt : value.closedAt;
   return {
     id: value.id,
     number: value.number,
     scores,
+    startedAt,
     closedAt: value.closedAt,
   };
 }
@@ -155,6 +159,10 @@ function parseGame(value: unknown): GameSnapshot | null {
     players,
     rounds,
     currentScores,
+    currentRoundStartedAt:
+      typeof value.currentRoundStartedAt === "string"
+        ? value.currentRoundStartedAt
+        : value.createdAt,
     createdAt: value.createdAt,
     updatedAt: value.updatedAt,
   };

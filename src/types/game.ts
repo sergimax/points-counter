@@ -66,6 +66,8 @@ export type Round = {
   id: string;
   number: number;
   scores: Record<string, number>;
+  /** When this round began (open-round start time at close). */
+  startedAt: string;
   closedAt: string;
 };
 
@@ -78,6 +80,9 @@ export type GameSnapshot = {
   players: Player[];
   rounds: Round[];
   currentScores: Record<string, number>;
+  /** When the open round began. */
+  currentRoundStartedAt: string;
+  /** Game creation time. */
   createdAt: string;
   updatedAt: string;
 };

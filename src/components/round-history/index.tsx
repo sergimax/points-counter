@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { observer } from "mobx-react-lite";
 import { useTranslation } from "../../i18n/use-translation.ts";
+import { formatDateTime } from "../../lib/format-date.ts";
 import { getColorTokens } from "../../lib/player-colors.ts";
 import type { GameModel } from "../../stores/game-model.ts";
 
@@ -21,7 +22,7 @@ type RoundHistoryProps = {
 export const RoundHistory = observer(function RoundHistory({
   game,
 }: RoundHistoryProps) {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
   const closedRounds = [...game.rounds].reverse();
 
   return (
@@ -101,6 +102,11 @@ export const RoundHistory = observer(function RoundHistory({
                   <TableCell>
                     <Typography variant="body2" sx={{ fontWeight: 600 }}>
                       {t("game.roundNumber", { number: round.number })}
+                    </Typography>
+                    <Typography variant="caption" color="text.secondary">
+                      {t("game.roundStarted", {
+                        date: formatDateTime(round.startedAt, locale),
+                      })}
                     </Typography>
                   </TableCell>
                   {game.players.map((player) => (
