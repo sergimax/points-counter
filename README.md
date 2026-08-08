@@ -10,8 +10,19 @@ A **local-first** web app for **counting and processing points** in board games.
 
 ## Data and state
 
-- **Persistence:** browser storage only (for example **`localStorage`**) and/or in-memory state coordinated with **[MobX](https://mobx.js.org/)** (or similar patterns the repo adopts). Document stable storage keys and JSON shapes here when they are settled.
+- **Persistence:** browser **`localStorage`** and/or in-memory state coordinated with **[MobX](https://mobx.js.org/)**. Game session data shapes will be documented here as they settle.
+- **UI prefs (current):**
+
+| Key | Contents |
+| --- | --- |
+| `points-counter-color-mode` | `light` \| `dark` |
+| `points-counter-locale` | `en` \| `ru` (header chrome strings; default `en`) |
+
 - **Privacy:** game data stays on the device unless the user exports or copies it themselves.
+
+## Design
+
+Visual tokens and UI recipes: [`docs/design/design-system.md`](docs/design/design-system.md) and [`docs/design/design-tokens.json`](docs/design/design-tokens.json).
 
 ## Roadmap (planned)
 
