@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.2.0] - 2026-08-08
+
+### Added
+
+- Local-first scoring with MobX and `localStorage` (`points-counter-data`, `schemaVersion` 1).
+- Create games (title, icon, color, players); list / resume / delete in **Games**; **New game** CTA on that view.
+- Current-game scoring: before → this-round change (typed input or +/−) → live total; **Close round** writes history and starts the next round.
+- Round history table with sticky fixed-width round column and horizontal scroll for many players.
+- Game `createdAt` and per-round `startedAt` (open round tracks `currentRoundStartedAt`).
+- Add players mid-game (no maximum player count; minimum one).
+- Shared icon and color pickers for games and players; EN/RU scoring chrome.
+- App views: **Current game**, **Games**, **New game**; header nav shows inline buttons when the toolbar has enough width, otherwise a compact menu.
+- Wide screens: two-column player list; history matches that content width.
+
+### Changed
+
+- Switching games is done by **Resume** in Games (previous active game is paused automatically).
+
 ## [0.1.0] - 2026-08-08
 
 ### Added

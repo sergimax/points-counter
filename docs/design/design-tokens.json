@@ -2,7 +2,7 @@
   "$schemaComment": "Portable design tokens for points-counter — chrome + shared UI recipes.",
   "meta": {
     "name": "points-counter",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "versionNote": "Tracks app package.json when design tokens change with a release; not an independent semver stream.",
     "sources": [
       "src/theme/create-app-theme.ts",
@@ -10,7 +10,8 @@
       "src/theme/tooltip-surface.ts",
       "src/index.css",
       "src/App.css",
-      "src/components/app-header/index.tsx"
+      "src/components/app-header/index.tsx",
+      "src/components/app-toolbar-actions/index.tsx"
     ],
     "muiSpacingPx": 8,
     "bilingualFonts": {
@@ -91,7 +92,7 @@
     "header": {
       "logoSizePx": 28,
       "rightChrome": ["locale", "theme", "github", "authorHome", "versionLabel"],
-      "centerSlot": "optional primary actions (empty until feature work)"
+      "centerSlot": "view nav (current / games / new); inline buttons when slot ≥ ~360px, else hamburger menu"
     }
   },
   "colorMode": {
@@ -106,7 +107,7 @@
     "storageKey": "points-counter-locale",
     "default": "en",
     "values": ["en", "ru"],
-    "scope": "chrome strings (header / meta) until full i18n"
+    "scope": "chrome + scoring UI strings (en / ru)"
   },
   "cssVariables": {
     "light": {

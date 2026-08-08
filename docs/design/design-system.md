@@ -57,10 +57,10 @@ Sticky AppBar (blurred paper bg, bottom border):
 | Region | Contents |
 | --- | --- |
 | **Left** (`flexShrink: 0`) | `logo.svg` 28×28 · app title (`h1` / Typography `h6`, brand color, display font) |
-| **Center** (`flexGrow: 1`) | Primary actions; justify `flex-end` on xs, `center` on md+. Compact: ☰ menu → same actions as MenuItems when actions exist |
+| **Center** (`flexGrow: 1`) | Primary view nav (Current / Games / New); justify `flex-end` on xs, `center` on md+. Inline buttons when the slot is wide enough (~360px+); otherwise ☰ menu with the same actions |
 | **Right** (`flexShrink: 0`) | Locale EN↔RU · theme toggle · GitHub · author home · version caption `v.X.Y.Z` (mono, not a button) |
 
-Toggle pattern for center actions (when added): outlined when closed, contained when open; mutually exclusive panels.
+View nav uses space-aware layout (`ResizeObserver` on the center slot), not a fixed breakpoint alone.
 
 ---
 
