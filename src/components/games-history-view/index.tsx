@@ -1,7 +1,7 @@
 export const GamesHistoryView = () => {
     return (
         <div>
-            Games history
+            Games history (games history list)
         </div>
     )
 }

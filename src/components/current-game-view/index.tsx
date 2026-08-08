@@ -1,7 +1,7 @@
 export const CurrentGameView = () => {
     return (
         <div>
-            Current game
+            Current game (game title)
         </div>
     )
 }
