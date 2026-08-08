@@ -33,7 +33,7 @@ alwaysApply: true
   - `points-counter-color-mode` — `light` \| `dark`
   - `points-counter-locale` — `en` \| `ru`
 - **Rules (current):** at least 1 player per game (no max); players can join an active game; one open round; close round stores one score per player; negatives allowed; at most one `active` game (switch via Games / Resume).
-- **Future — PWA:** a **Web App Manifest** (and typical PWA support such as icons and installability) is a planned enhancement for **mobile-style** use. Do not half-enable PWA without icons, manifest fields, and a quick sanity check on install behavior.
+- **PWA:** installable offline app shell via `vite-plugin-pwa` (manifest + service worker). Do not remove icons, manifest fields, or SW registration without replacing them.
 - Prefer **simple, accessible UI** (keyboard, labels, readable contrast).
 
 ## Editing habits

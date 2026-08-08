@@ -13,6 +13,7 @@
 - Shared icon and color pickers for games and players; EN/RU scoring chrome.
 - App views: **Current game**, **Games**, **New game**; header nav shows inline buttons when the toolbar has enough width, otherwise a compact menu.
 - Wide screens: two-column player list; history matches that content width.
+- **PWA:** web app manifest, install icons (192/512 + Apple touch), service worker with app-shell precache and Google Fonts runtime cache for offline use after first visit.
 
 ### Changed
 

@@ -19,6 +19,7 @@ Everything runs in the browser: **no backend**, no cloud sync, and no special ho
 - Save many games; **one active** at a time — switch via **Resume** in **Games**
 - Round history with sticky round labels when many players force horizontal scroll
 - Wide layout: two-column player list; EN/RU chrome; light/dark theme
+- **PWA / offline:** installable on phone; app shell and fonts cache after first online visit (scores stay in `localStorage`)
 
 ## Data and state
 
@@ -41,16 +42,17 @@ Visual tokens and UI recipes: [`docs/design/design-system.md`](docs/design/desig
 
 ## Roadmap (planned)
 
-- **PWA:** add a [Web App Manifest](https://developer.mozilla.org/en-US/docs/Web/Manifest) (and related PWA pieces) so the app can be installed and used more like a **mobile app** from the home screen.
+- Optional polish: install prompt UI, offline indicator, self-hosted fonts (no Google Fonts dependency).
 
 ## Scripts
 
 | Command           | Description              |
 | --- | --- |
 | `npm run dev`     | Start dev server with HMR |
-| `npm run build`   | Typecheck and production build |
-| `npm run preview` | Preview the production build |
+| `npm run build`   | Typecheck and production build (includes PWA SW + manifest) |
+| `npm run preview` | Preview the production build (use this to test install / offline) |
 | `npm run lint`    | Run ESLint               |
+| `npm run generate:pwa-icons` | Regenerate `public/pwa-*.png` and Apple touch icon from `logo.svg` |
 
 ## Version
 
