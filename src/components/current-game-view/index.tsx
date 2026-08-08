@@ -194,6 +194,7 @@ const PlayerScoreRow = observer(function PlayerScoreRow({
       variant="outlined"
       sx={{
         p: 1.5,
+        height: "100%",
         display: "grid",
         gridTemplateColumns: {
           xs: "1fr",
@@ -202,6 +203,7 @@ const PlayerScoreRow = observer(function PlayerScoreRow({
         gap: 1.25,
         alignItems: "center",
         borderLeft: `3px solid ${color.main}`,
+        minWidth: 0,
       }}
     >
       <Stack
@@ -342,7 +344,13 @@ export const CurrentGameView = observer(function CurrentGameView() {
   const gameColor = getColorTokens(game.colorId);
 
   return (
-    <Stack spacing={2} sx={{ maxWidth: 720 }}>
+    <Stack
+      spacing={2}
+      sx={{
+        width: "100%",
+        maxWidth: { xs: 720, md: 1100, lg: 1280 },
+      }}
+    >
       <Stack
         direction={{ xs: "column", sm: "row" }}
         spacing={1.25}
@@ -402,15 +410,33 @@ export const CurrentGameView = observer(function CurrentGameView() {
         </Stack>
       </Stack>
 
-      <Stack spacing={1.25}>
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: {
+            xs: "1fr",
+            md: "repeat(2, minmax(0, 1fr))",
+          },
+          gap: 1.25,
+          alignItems: "stretch",
+        }}
+      >
         {game.players.map((player) => (
           <PlayerScoreRow key={player.id} game={game} playerId={player.id} />
         ))}
+      </Box>
+
+      <Box
+        sx={{
+          width: "100%",
+          maxWidth: { xs: "100%", md: "calc((100% - 10px) / 2)" },
+        }}
+      >
         <AddPlayerForm
           nextPlayerIndex={game.players.length}
           onAdd={(player) => rootStore.addPlayerToActiveGame(player)}
         />
-      </Stack>
+      </Box>
 
       <RoundHistory game={game} />
     </Stack>

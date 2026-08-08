@@ -149,8 +149,8 @@ export function AddPlayerForm({ nextPlayerIndex, onAdd }: AddPlayerFormProps) {
           value={name}
           onChange={(event) => setName(event.target.value)}
           size="small"
-          fullWidth
           autoFocus
+          sx={{ width: "100%", maxWidth: 320 }}
           onKeyDown={(event) => {
             if (event.key === "Enter") {
               handleSubmit();
