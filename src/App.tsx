@@ -45,7 +45,10 @@ const App = observer(function App() {
       <main className="app-main">
         {activeView === "current" ? <CurrentGameView /> : null}
         {activeView === "games" ? (
-          <GamesView onActivated={() => setActiveView("current")} />
+          <GamesView
+            onActivated={() => setActiveView("current")}
+            onNewGame={() => setActiveView("new")}
+          />
         ) : null}
         {activeView === "new" ? (
           <NewGameView onCreated={() => setActiveView("current")} />
