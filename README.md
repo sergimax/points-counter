@@ -5,6 +5,8 @@ A **local-first** web app for **counting and processing points** in board games.
 ## Stack
 
 - [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/) + [Vite](https://vite.dev/)
+- [MUI](https://mui.com/) for theming and chrome (see [`docs/design/design-system.md`](docs/design/design-system.md))
+- [MobX](https://mobx.js.org/) for local-first state (as the app grows)
 
 ## Data and state
 
