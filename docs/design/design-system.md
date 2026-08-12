@@ -1,4 +1,4 @@
-# Design system — Points Counter
+# Design system — Points
 
 Portable visual tokens and UI recipes used by this app. Use as:
 
@@ -17,7 +17,7 @@ Portable visual tokens and UI recipes used by this app. Use as:
 | CSS variables + scrollbars | `src/index.css` |
 | App shell spacing | `src/App.css` |
 | Color mode sync | `src/contexts/color-mode-provider.tsx`, `src/hooks/color-mode.ts` |
-| Locale (chrome + scoring) | `src/i18n/` — storage key `points-counter-locale` |
+| Locale (chrome + scoring) | `src/i18n/` — storage key `points-locale` |
 | PWA chrome | `vite.config.ts` (`vite-plugin-pwa`), `install-prompt/`, `offline-banner/` |
 | Machine tokens | `docs/design/design-tokens.json` |
 
@@ -44,7 +44,7 @@ When tokens change in code, update this doc and `design-tokens.json` in the same
 
 - Attribute: `document.documentElement.dataset.colorMode` = `light` | `dark`
 - CSS: `:root` / `:root[data-color-mode="dark"]` in `index.css`
-- Storage key: `points-counter-color-mode`
+- Storage key: `points-color-mode`
 - Theme-color meta: light `#fcfbf9`, dark `#1a1a1a`
 - Default for new visits: system preference, else `light`
 
@@ -64,7 +64,7 @@ Sticky AppBar (blurred paper bg, bottom border):
 
 View nav uses space-aware layout (`ResizeObserver` on the center slot), not a fixed breakpoint alone.
 
-Below the AppBar: **offline banner** when `navigator.onLine` is false. Bottom snackbar: **install prompt** when `beforeinstallprompt` fires (dismiss stored as `points-counter-install-dismissed`).
+Below the AppBar: **offline banner** when `navigator.onLine` is false. Bottom snackbar: **install prompt** when `beforeinstallprompt` fires (dismiss stored as `points-install-dismissed`).
 
 ---
 
@@ -289,10 +289,12 @@ Global in `index.css`:
 
 | Key | Contents |
 | --- | --- |
-| `points-counter-data` | Games payload (`schemaVersion` 1): `games[]`, `activeGameId` |
-| `points-counter-color-mode` | `light` \| `dark` |
-| `points-counter-locale` | `en` \| `ru` (chrome + scoring UI; default `en`) |
-| `points-counter-install-dismissed` | `1` if PWA install prompt was dismissed |
+| `points-data` | Games payload (`schemaVersion` 1): `games[]`, `activeGameId` |
+| `points-color-mode` | `light` \| `dark` |
+| `points-locale` | `en` \| `ru` (chrome + scoring UI; default `en`) |
+| `points-install-dismissed` | `1` if PWA install prompt was dismissed |
+
+Legacy `points-counter-*` keys migrate once on load.
 
 ---
 

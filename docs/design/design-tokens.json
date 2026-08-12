@@ -1,7 +1,7 @@
 {
-  "$schemaComment": "Portable design tokens for points-counter — chrome + shared UI recipes.",
+  "$schemaComment": "Portable design tokens for points — chrome + shared UI recipes.",
   "meta": {
-    "name": "points-counter",
+    "name": "points",
     "version": "0.3.0",
     "versionNote": "Tracks app package.json when design tokens change with a release; not an independent semver stream.",
     "sources": [
@@ -102,33 +102,33 @@
   },
   "colorMode": {
     "htmlAttribute": "data-color-mode",
-    "storageKey": "points-counter-color-mode",
+    "storageKey": "points-color-mode",
     "themeColorMeta": {
       "light": "#fcfbf9",
       "dark": "#1a1a1a"
     }
   },
   "locale": {
-    "storageKey": "points-counter-locale",
+    "storageKey": "points-locale",
     "default": "en",
     "values": ["en", "ru"],
     "scope": "chrome + scoring UI strings (en / ru)"
   },
   "persistence": {
     "gameData": {
-      "storageKey": "points-counter-data",
+      "storageKey": "points-data",
       "schemaVersion": 1,
       "note": "games[] + activeGameId"
     },
     "installDismissed": {
-      "storageKey": "points-counter-install-dismissed",
+      "storageKey": "points-install-dismissed",
       "value": "1"
     }
   },
   "pwa": {
     "plugin": "vite-plugin-pwa",
     "registerType": "autoUpdate",
-    "base": "/points-counter/",
+    "base": "/points/",
     "icons": ["pwa-192.png", "pwa-512.png", "apple-touch-icon.png"],
     "offlineBanner": "src/components/offline-banner",
     "installPrompt": "src/components/install-prompt"

@@ -10,8 +10,13 @@
 import { createContext } from "react";
 import type { PaletteMode } from "@mui/material";
 
+import { migrateLocalStorageKey } from "../lib/migrate-storage-key.ts";
+
 /** Same key as index.html pre-paint script. */
-export const COLOR_MODE_STORAGE_KEY = "points-counter-color-mode";
+export const COLOR_MODE_STORAGE_KEY = "points-color-mode";
+export const LEGACY_COLOR_MODE_STORAGE_KEY = "points-counter-color-mode";
+
+migrateLocalStorageKey(LEGACY_COLOR_MODE_STORAGE_KEY, COLOR_MODE_STORAGE_KEY);
 
 export type ColorMode = PaletteMode;
 

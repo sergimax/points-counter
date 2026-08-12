@@ -1,9 +1,17 @@
 import GetAppOutlinedIcon from "@mui/icons-material/GetAppOutlined";
 import { Alert, Button, Snackbar } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
+import { migrateLocalStorageKey } from "../../lib/migrate-storage-key.ts";
 import { useTranslation } from "../../i18n/use-translation.ts";
 
-export const INSTALL_DISMISS_STORAGE_KEY = "points-counter-install-dismissed";
+export const INSTALL_DISMISS_STORAGE_KEY = "points-install-dismissed";
+export const LEGACY_INSTALL_DISMISS_STORAGE_KEY =
+  "points-counter-install-dismissed";
+
+migrateLocalStorageKey(
+  LEGACY_INSTALL_DISMISS_STORAGE_KEY,
+  INSTALL_DISMISS_STORAGE_KEY,
+);
 
 type BeforeInstallPromptEvent = Event & {
   prompt: () => Promise<void>;

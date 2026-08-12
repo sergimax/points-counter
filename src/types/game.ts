@@ -1,4 +1,5 @@
-export const DATA_STORAGE_KEY = "points-counter-data";
+export const DATA_STORAGE_KEY = "points-data";
+export const LEGACY_DATA_STORAGE_KEY = "points-counter-data";
 export const DATA_SCHEMA_VERSION = 1;
 export const MIN_PLAYERS = 1;
 
