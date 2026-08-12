@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0] - 2026-08-12
+
+### Changed
+
+- Renamed the project from **points-counter** to **points** (package name, PWA/base path `/points/`, app title, GitHub link).
+- Renamed `localStorage` keys to `points-*`; legacy `points-counter-*` values migrate once on load.
+
 ## [0.3.0] - 2026-08-08
 
 ### Added

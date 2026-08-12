@@ -1,6 +1,6 @@
 /**
  * App-level MobX store: all saved games, the single active game, and
- * debounced persistence to `localStorage` (`points-counter-data`).
+ * debounced persistence to `localStorage` (`points-data`).
  *
  * Invariant: at most one game has `status === "active"`; `activeGameId`
  * points at that game (or null when everything is paused).

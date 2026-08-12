@@ -1,9 +1,9 @@
-# points-counter
+# points
 
 A **local-first** web app for **counting and processing points** in board games.
 Everything runs in the browser: **no backend**, no cloud sync, and no special hosted data.
 
-![Версия приложения](https://img.shields.io/badge/App_version-0.3.0-purple)
+![Версия приложения](https://img.shields.io/badge/App_version-0.4.0-purple)
 
 ## Stack
 
@@ -28,10 +28,12 @@ Everything runs in the browser: **no backend**, no cloud sync, and no special ho
 
 | Key | Contents |
 | --- | --- |
-| `points-counter-data` | Games payload (`schemaVersion` 1): `games[]`, `activeGameId` |
-| `points-counter-color-mode` | `light` \| `dark` |
-| `points-counter-locale` | `en` \| `ru` (UI strings; default `en`) |
-| `points-counter-install-dismissed` | `1` if the install prompt was dismissed |
+| `points-data` | Games payload (`schemaVersion` 1): `games[]`, `activeGameId` |
+| `points-color-mode` | `light` \| `dark` |
+| `points-locale` | `en` \| `ru` (UI strings; default `en`) |
+| `points-install-dismissed` | `1` if the install prompt was dismissed |
+
+Legacy `points-counter-*` keys are migrated once on load.
 
 - **Game timestamps:** `createdAt`; open round `currentRoundStartedAt`; closed rounds `startedAt` + `closedAt`.
 - **Game status:** `active` \| `paused`. Activating a game pauses any previous active game.

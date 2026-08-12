@@ -1,6 +1,7 @@
 import {
   DATA_SCHEMA_VERSION,
   DATA_STORAGE_KEY,
+  LEGACY_DATA_STORAGE_KEY,
   GAME_ICON_IDS,
   COLOR_IDS,
   PLAYER_ICON_IDS,
@@ -14,6 +15,9 @@ import {
   type Round,
 } from "../types/game.ts";
 import { defaultColorId } from "./player-colors.ts";
+import { migrateLocalStorageKey } from "./migrate-storage-key.ts";
+
+migrateLocalStorageKey(LEGACY_DATA_STORAGE_KEY, DATA_STORAGE_KEY);
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);

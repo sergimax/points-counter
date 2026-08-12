@@ -7,7 +7,7 @@ const pkg = JSON.parse(readFileSync("./package.json", "utf8")) as {
   version: string;
 };
 
-const APP_BASE = "/points-counter/";
+const APP_BASE = "/points/";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -25,10 +25,10 @@ export default defineConfig({
       ],
       manifest: {
         id: APP_BASE,
-        name: "Points Counter",
+        name: "Points",
         short_name: "Points",
         description:
-          "Local-first board game points counter. Track scores for players and sessions in the browser.",
+          "Local-first board game scoring. Track points for players and sessions in the browser.",
         theme_color: "#fcfbf9",
         background_color: "#fcfbf9",
         display: "standalone",

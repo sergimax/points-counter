@@ -1,6 +1,11 @@
+import { migrateLocalStorageKey } from "../lib/migrate-storage-key.ts";
+
 export type Locale = "en" | "ru";
 
-export const LOCALE_STORAGE_KEY = "points-counter-locale";
+export const LOCALE_STORAGE_KEY = "points-locale";
+export const LEGACY_LOCALE_STORAGE_KEY = "points-counter-locale";
+
+migrateLocalStorageKey(LEGACY_LOCALE_STORAGE_KEY, LOCALE_STORAGE_KEY);
 
 export type MessageKey =
   | "header.appTitle"
@@ -61,7 +66,7 @@ export type MessageKey =
 type Messages = Record<MessageKey, string>;
 
 const en: Messages = {
-  "header.appTitle": "Points Counter",
+  "header.appTitle": "Points",
   "header.themeLight": "Switch to light mode",
   "header.themeDark": "Switch to dark mode",
   "header.localeToggle": "Switch language",
@@ -112,13 +117,13 @@ const en: Messages = {
   "error.titleRequired": "Enter a game title.",
   "error.playerNameRequired": "Every player needs a name.",
   "pwa.offline": "You’re offline. Scoring still works on this device.",
-  "pwa.installHint": "Install Points Counter for quick access offline.",
+  "pwa.installHint": "Install Points for quick access offline.",
   "pwa.installAction": "Install",
   "pwa.installDismiss": "Not now",
 };
 
 const ru: Messages = {
-  "header.appTitle": "Счётчик очков",
+  "header.appTitle": "Points",
   "header.themeLight": "Светлая тема",
   "header.themeDark": "Тёмная тема",
   "header.localeToggle": "Сменить язык",
@@ -170,7 +175,7 @@ const ru: Messages = {
   "error.titleRequired": "Введите название игры.",
   "error.playerNameRequired": "У каждого игрока должно быть имя.",
   "pwa.offline": "Нет сети. Счёт на этом устройстве по-прежнему работает.",
-  "pwa.installHint": "Установите «Счётчик очков» для быстрого офлайн-доступа.",
+  "pwa.installHint": "Установите «Points» для быстрого офлайн-доступа.",
   "pwa.installAction": "Установить",
   "pwa.installDismiss": "Не сейчас",
 };

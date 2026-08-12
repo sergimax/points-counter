@@ -3,7 +3,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import { Box, IconButton, Tooltip, Typography } from "@mui/material";
 import { useTranslation } from "../../i18n/use-translation.ts";
 
-const GITHUB_REPO_URL = "https://github.com/sergimax/points-counter";
+const GITHUB_REPO_URL = "https://github.com/sergimax/points";
 const AUTHOR_SITE_URL = "https://sergimax.ru";
 
 export function AppVersionLabel() {
