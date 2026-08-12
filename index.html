@@ -6,7 +6,7 @@
     <meta name="color-scheme" content="light dark" />
     <meta
       name="description"
-      content="Local-first board game points counter. Track scores for players and sessions in the browser."
+      content="Local-first board game scoring. Track points for players and sessions in the browser."
     />
     <meta name="theme-color" content="#fcfbf9" />
     <meta name="mobile-web-app-capable" content="yes" />
@@ -16,11 +16,19 @@
     <!-- Sync theme before paint (same key/logic as color-mode) to avoid a light flash. -->
     <script>
       (function () {
-        var storageKey = "points-counter-color-mode";
+        var storageKey = "points-color-mode";
+        var legacyKey = "points-counter-color-mode";
         var mode = "light";
 
         try {
           var stored = localStorage.getItem(storageKey);
+          if (stored !== "light" && stored !== "dark") {
+            stored = localStorage.getItem(legacyKey);
+            if (stored === "light" || stored === "dark") {
+              localStorage.setItem(storageKey, stored);
+              localStorage.removeItem(legacyKey);
+            }
+          }
           if (stored === "light" || stored === "dark") {
             mode = stored;
           } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
@@ -42,11 +50,11 @@
     </script>
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <title>Points Counter</title>
-    <meta property="og:title" content="Points Counter" />
+    <title>Points</title>
+    <meta property="og:title" content="Points" />
     <meta
       property="og:description"
-      content="Local-first board game points counter. Track scores for players and sessions in the browser."
+      content="Local-first board game scoring. Track points for players and sessions in the browser."
     />
     <meta property="og:type" content="website" />
   </head>
